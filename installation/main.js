@@ -107,10 +107,15 @@ mocked.permissions = [{
 		required: true
 	}];
 
+mocked.devices = [{
+		name: "Current device"
+	}, {
+		name: "Samsung Galaxy Tab 10.1"
+	}];
+
 //mock generator
 var generateMockedData = function(arrayObjectName, quantity) {
 	var i = 0,
-		randomnumber,
 		destArr = mocked[arrayObjectName];
 
 	for(i; i<quantity; i++) {
@@ -122,20 +127,35 @@ var generateMockedData = function(arrayObjectName, quantity) {
 				permission: Math.floor(Math.random()*3),
 				required: !!(Math.floor(Math.random()*2))
 			});
-		} //else {
+		} else if(arrayObjectName == 'devices') {
+			destArr.push({
+				name: "Lorem "+(i+1),
+			});
+		}
 	}
 }
 
 // generate more mocked data
 generateMockedData('permissions', 2);
+generateMockedData('devices', Math.floor(Math.random()*3));
+
 
 //draw
 function drawPermissionsList() {
 	var permissionsListContainer = document.getElementById('permissions-list'),
 		permissions = mocked.permissions,
+		devices = mocked.devices,
 		i = 0,
-		j = permissions.length;
+		j = permissions.length,
+		devi = 0,
+		devj = devices.length,
+		deviceNamesSet = false;
 	mocked.permissionCategories = {};
+	var headingsToScroll = [];
+
+	if(window.innerWidth < 960) {
+		devj = 1; //we don't want to generate other devices for a mobile ui
+	}
 
 	for(i; i<j; i++) {
 		var category,
@@ -146,10 +166,12 @@ function drawPermissionsList() {
 			category = document.createElement("h1");
 			category.innerHTML = permissions[i].category;
 			permissionsListContainer.appendChild(category);
+			headingsToScroll.push(category);
 		}
 
 		var name = document.createElement("h3");
 		name.innerHTML = permissions[i].name;
+		headingsToScroll.push(name);
 		if(permissions[i].required) {
 			var required = document.createElement("span");
 			required.innerHTML = "required";
@@ -171,13 +193,33 @@ function drawPermissionsList() {
 			};
 		})(desc, name);
 
-		var permControls = document.createElement("div");
-		permControls.className = "permissions-controls";
-
 		permUnit.appendChild(name);
 		permUnit.appendChild(desc);
-		drawPermissionButtons(permControls, permissions[i].permission);
-		permUnit.appendChild(permControls);
+
+		var permControlsContainer = document.createElement("div");
+		permControlsContainer.className = "permissions-controls-container";
+
+		var permControls;
+		for(devi; devi<devj; devi++) {
+			permControls = document.createElement("div");
+			permControls.className = "permissions-controls";
+			drawPermissionButtons(permControls, permissions[i].permission);
+			permControlsContainer.appendChild(permControls);
+		}
+		devi = 0; //reset
+		if(!deviceNamesSet && window.innerWidth >= 960) {
+			var deviceNames = document.getElementById('device-names'),
+				device;
+			for(devi; devi<devj; devi++) {
+				device = document.createElement("div");
+				device.innerHTML = devices[devi].name;
+				deviceNames.appendChild(device);
+			}
+
+			devi = 0; //reset again
+			deviceNamesSet = true;
+		}
+		permUnit.appendChild(permControlsContainer);
 
 		if(!lastInsertedInCategory) {
 			permissionsListContainer.appendChild(permUnit);
@@ -185,6 +227,16 @@ function drawPermissionsList() {
 		} else {
 			insertAfter(lastInsertedInCategory, permUnit);
 		}
+	}
+
+	if(window.innerWidth >= 960) {
+		var content = document.getElementById('content');
+		content.onscroll = function() {
+			for(i in headingsToScroll) {
+				headingsToScroll[i].style.left = content.scrollLeft+"px";
+			}
+			console.log("skrol");
+		};
 	}
 };
 drawPermissionsList();
