@@ -376,6 +376,6 @@ h3 {
 		float: left;
 	}
 	.permissions-controls-container > div + div, #device-names > div + div {
-		margin-left: 25px;
+		margin-left: 45px;
 	}
 }
