@@ -196,17 +196,11 @@ function drawPermissionsList() {
 		permUnit.appendChild(name);
 		permUnit.appendChild(desc);
 
-		var permControlsContainer = document.createElement("div");
-		permControlsContainer.className = "permissions-controls-container";
+		var permControls = document.createElement("div");
+		permControls.className = "permissions-controls";
+		drawPermissionButtons(permControls, permissions[i].permission);
+		permUnit.appendChild(permControls);
 
-		var permControls;
-		for(devi; devi<devj; devi++) {
-			permControls = document.createElement("div");
-			permControls.className = "permissions-controls";
-			drawPermissionButtons(permControls, permissions[i].permission);
-			permControlsContainer.appendChild(permControls);
-		}
-		devi = 0; //reset
 		if(!deviceNamesSet && window.innerWidth >= 960) {
 			var deviceNames = document.getElementById('device-names'),
 				device;
@@ -215,11 +209,8 @@ function drawPermissionsList() {
 				device.innerHTML = devices[devi].name;
 				deviceNames.appendChild(device);
 			}
-
-			devi = 0; //reset again
 			deviceNamesSet = true;
 		}
-		permUnit.appendChild(permControlsContainer);
 
 		if(!lastInsertedInCategory) {
 			permissionsListContainer.appendChild(permUnit);
@@ -227,16 +218,6 @@ function drawPermissionsList() {
 		} else {
 			insertAfter(lastInsertedInCategory, permUnit);
 		}
-	}
-
-	if(window.innerWidth >= 960) {
-		var content = document.getElementById('content');
-		content.onscroll = function() {
-			for(i in headingsToScroll) {
-				headingsToScroll[i].style.left = content.scrollLeft+"px";
-			}
-			console.log("skrol");
-		};
 	}
 };
 drawPermissionsList();

@@ -52,7 +52,7 @@ table {
 
 
 html, body {
-	min-height: 100%;
+	height: 100%;
 }
 body {
 	/* Helvetica/Arial-based sans serif stack */
@@ -314,68 +314,121 @@ h3 {
 
 @media screen and (min-width: 960px) {
 	body {
-		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAYAAAB4zEQNAAAAHklEQVQYlWNggIIrV678Z8AGcEoQlBwMCkj3FroEALZoIs+QurgOAAAAAElFTkSuQmCC);
+		background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAAGElEQVQImWNgQID/DDgATgmCknRQQJyrAaFxB/mC2lhkAAAAAElFTkSuQmCC);
+	}
+	.content {
+		width: 960px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 	}
 	.content, .header-content, .footer-content {
-		width: 980px;
 		margin: 0 auto;
 		position: relative;
 	}
+	.header-content, .footer-content {
+		width: 460px;
+	}
 	.header, .footer {
 		padding: 0;
+		height: 0;
+		z-index: 1;
 	}
-	.header-content {
-		background: #000;
-		height: 80px;
-		padding: 10px;
-	}
-	.footer {
+	.header {
+		position: absolute;
+		margin: 0 auto;
 		background: none;
 		border: none;
-		top: 45px;
+	}
+	.header-content {
+		position: absolute;
+		right: 50%;
+		background: #000;
+		height: 260px;
+		padding: 10px;
+		top: 20px;
+		padding-left: 40px;
+		-webkit-box-shadow: 0 0 40px black;
+		box-shadow: 0 0 40px black;
+	}
+	.footer {
+		position: absolute;
+		background: none;
+		border: none;
+		top: 40px;
 	}
 	.footer-content {
 		padding: 10px;
+		position: absolute;
+		right: 50%;
+		top: 190px;
 	}
 	.content {
+		min-height: 100%;
 		-webkit-box-shadow: inset 0 0 25px #333, 0 0 40px black;
 		box-shadow: inset 0 0 25px #333, 0 0 40px black;
 		overflow: auto;
+		padding: 10px 10px 70px;
 	}
 	.button.install {
-		width: 30%;
+		width: 90%;
+		position: static;
+		font-size: 120%;
 	}
 	.button.dontinstall {
 		display: none;
 	}
 
-	#permissions-list > div {
+	.header img {
+		left: auto;
+		right: 310px;
+		top: 20px;
+		width: 160px;
 	}
-	#permissions-list > div+div {
-		margin-top: 3.5em;
+	.title {
+		padding-left: 200px;
+		font-size: 200%;
+		margin-top: 30px;
+		text-shadow: 0px 0px 20px white;
 	}
-	#permissions-list h1 {
-		margin-top: 2.4em;
-		position: relative;
+	.subtitle {
+		margin-left: 200px;
+		font-size: 130%;
+		color: #888;
 	}
 
-	.permissions-controls-container, #device-names {
-		margin-right: -999em;
-		padding: 5px 0;
-		float: left;
+	#permissions-explained {
+		position: absolute;
+		left: 30px;
+		width: 380px;
+		top: 310px;
+		max-height: 0px;
+		padding: 0px;
+		z-index: 2;
 	}
+
+	.permissions-device {
+		position: absolute;
+		left: 30px;
+		width: 420px;
+		top: 390px;
+		z-index: 2;
+	}
+
+	#permissions-list {
+		width: 380px;
+		display: inline-block;
+		margin-left: 20px;
+	}
+
 	#device-names {
-		position: relative;
-		top: -2em;
+		width: 480px;
+		display: inline-block;
 		font-size: 130%;
 		font-weight: bold;
 		color: #0084FF;
-	}
-	.permissions-controls-container > div, #device-names > div {
-		width: 300px;
-		float: left;
-	}
-	.permissions-controls-container > div + div, #device-names > div + div {
-		margin-left: 45px;
+		vertical-align: top;
+		padding-top: 430px;
+		padding-left: 20px;
 	}
 }
