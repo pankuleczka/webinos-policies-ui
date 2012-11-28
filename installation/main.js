@@ -141,27 +141,28 @@ generateMockedData('devices', Math.floor(Math.random()*3));
 
 
 //draw
+var objectsForLater = {}; //a place to gather all objects that I'm going to iterate later (onclick active class, and so on)
 function drawPermissionsList() {
 	var permissionsListContainer = document.getElementById('permissions-list'),
 		permissions = mocked.permissions,
 		devices = mocked.devices,
 		i = 0,
 		j = permissions.length,
-		devi = 0,
-		devj = devices.length,
+		k = 0,
+		l = devices.length,
 		deviceNamesSet = false;
-	mocked.permissionCategories = {};
+	objectsForLater.permissionCategories = {};
 	var headingsToScroll = [];
 
 	if(window.innerWidth < 960) {
-		devj = 1; //we don't want to generate other devices for a mobile ui
+		l = 1; //we don't want to generate other devices for a mobile ui
 	}
 
 	for(i; i<j; i++) {
 		var category,
 			permUnit = document.createElement("div");
 
-		var lastInsertedInCategory = mocked.permissionCategories[permissions[i].category];
+		var lastInsertedInCategory = objectsForLater.permissionCategories[permissions[i].category];
 		if(!lastInsertedInCategory) { // no previous object = no category
 			category = document.createElement("h1");
 			category.innerHTML = permissions[i].category;
@@ -204,9 +205,16 @@ function drawPermissionsList() {
 		if(!deviceNamesSet && window.innerWidth >= 960) {
 			var deviceNames = document.getElementById('device-names'),
 				device;
-			for(devi; devi<devj; devi++) {
+			objectsForLater['deviceNames'] = [];
+			for(k; k<l; k++) {
 				device = document.createElement("div");
-				device.innerHTML = devices[devi].name;
+				device.innerHTML = devices[k].name;
+				device.onclick = (function(active) {
+					return function() {
+						selectActive('deviceNames', active);
+					};
+				})(k);
+				objectsForLater['deviceNames'].push(device);
 				deviceNames.appendChild(device);
 			}
 			deviceNamesSet = true;
@@ -214,7 +222,7 @@ function drawPermissionsList() {
 
 		if(!lastInsertedInCategory) {
 			permissionsListContainer.appendChild(permUnit);
-			mocked.permissionCategories[permissions[i].category] = permUnit;
+			objectsForLater.permissionCategories[permissions[i].category] = permUnit;
 		} else {
 			insertAfter(lastInsertedInCategory, permUnit);
 		}
@@ -242,10 +250,27 @@ function drawPermissionButtons(container, active) {
 		b_deny.className = "button deny"+classes[2];
 		docFragment.appendChild(b_deny);
 
-		b_allow.onclick = function() {drawPermissionButtons(container, 0)};
-		b_prompt.onclick = function() {drawPermissionButtons(container, 1)};
-		b_deny.onclick = function() {drawPermissionButtons(container, 2)};
+		var buttons = [b_allow, b_prompt, b_deny];
+		b_allow.onclick = function() {selectActive(buttons, 0)};
+		b_prompt.onclick = function() {selectActive(buttons, 1)};
+		b_deny.onclick = function() {selectActive(buttons, 2)};
 
-		container.innerHTML = '';
+		//container.innerHTML = '';
 		container.appendChild(docFragment);
+}
+
+function selectActive(elements, active) {
+	if(typeof elements == 'string') {
+		elements = objectsForLater[elements];
+	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
+		console.log("selectActive: bad object type");
+	}
+
+	for(var i in elements) {
+		if(i == active) {
+			addClass(elements[i], 'active');
+			continue;
+		}
+		removeClass(elements[i], 'active');
+	}
 }

@@ -80,6 +80,8 @@ h3 {
 	border-bottom: 10px solid #FFFA00;
 	height: 110px;
 	z-index: 10;
+	-webkit-box-shadow: 0 0 20px 0px #555;
+	box-shadow: 0 0 20px 0px #555;
 }
 .header img {
 	position: absolute;
@@ -106,7 +108,7 @@ h3 {
 	/*border-top: 1px solid #FFFA00;*/
 	font-size: 90%;
 	margin-left: 100px;
-	color: #BBB;
+	color: #888;
 }
 
 .content {
@@ -135,6 +137,8 @@ h3 {
 	height: 60px;
 	text-align: center;
 	z-index: 10;
+	-webkit-box-shadow: 0 0 20px 0px #555;
+	box-shadow: 0 0 20px 0px #555;
 }
 
 .button {
@@ -350,6 +354,7 @@ h3 {
 		padding-left: 40px;
 		-webkit-box-shadow: 0 0 40px black;
 		box-shadow: 0 0 40px black;
+		border-bottom: 5px solid #fff;
 	}
 	.footer {
 		position: absolute;
@@ -394,17 +399,15 @@ h3 {
 	.subtitle {
 		margin-left: 200px;
 		font-size: 130%;
-		color: #888;
 	}
 
 	#permissions-explained {
 		position: absolute;
 		left: 30px;
 		width: 380px;
-		top: 310px;
+		top: 320px;
 		max-height: 0px;
 		padding: 0px;
-		z-index: 2;
 	}
 
 	.permissions-device {
@@ -412,7 +415,8 @@ h3 {
 		left: 30px;
 		width: 420px;
 		top: 390px;
-		z-index: 2;
+		border-top: 1px dashed #0084FF;
+		padding-top: 10px;
 	}
 
 	#permissions-list {
@@ -428,7 +432,17 @@ h3 {
 		font-weight: bold;
 		color: #0084FF;
 		vertical-align: top;
-		padding-top: 430px;
+		padding-top: 440px;
 		padding-left: 20px;
+	}
+	#device-names div {
+		padding: 0.2em 0.5em;
+		border-left: 3px solid #ccc;
+	}
+	#device-names div:hover {
+		border-left: 3px solid #7F7F7F;
+	}
+	#device-names .active, #device-names .active:hover {
+		border-left-color: #000;
 	}
 }
