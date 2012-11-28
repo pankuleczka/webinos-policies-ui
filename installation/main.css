@@ -305,13 +305,16 @@ h3 {
 	width: 33%;
 }
 
-.allow.active {color: #fff; border-bottom: 4px solid #0f0; background: #111;}
+.allow.selected {color: #fff; border-bottom: 4px solid #0f0; background: #111;}
 .allow {color: #040; background: #eee;}
-.prompt.active {color: #fff; border-bottom: 4px solid #ff0; background: #111;}
+.prompt.selected {color: #fff; border-bottom: 4px solid #ff0; background: #111;}
 .prompt {color: #440; background: #eee;}
-.deny.active {color: #fff; border-bottom: 4px solid #f00; background: #111;}
+.deny.selected {color: #fff; border-bottom: 4px solid #f00; background: #111;}
 .deny {color: #400; background: #eee;}
 
+.name-label, .checkbox-label {
+	display: none;
+}
 
 /************************* MOBILE PART ENDS HERE */
 
@@ -435,14 +438,41 @@ h3 {
 		padding-top: 440px;
 		padding-left: 20px;
 	}
-	#device-names div {
-		padding: 0.2em 0.5em;
+	#device-names .name {
+		padding: 0.5em 0.5em;
 		border-left: 3px solid #ccc;
+		cursor: pointer;
+		display: inline-block;
+		width: 70%;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 	}
-	#device-names div:hover {
+	#device-names .name:hover {
 		border-left: 3px solid #7F7F7F;
 	}
-	#device-names .active, #device-names .active:hover {
+	#device-names .name.selected, #device-names .name.selected:hover {
 		border-left-color: #000;
+	}
+	#device-names .checkbox {
+		height: 30px;
+		background: url(img/check.png) 50% 100% no-repeat;
+		display: inline-block;
+		width: 30%;
+		vertical-align: top;
+	}
+	#device-names .checkbox.selected {
+		background-image: url(img/check-s.png);
+	}
+	.name-label, .checkbox-label {
+		display: block;
+		color: #000;
+		margin-bottom: 1em;
+	}
+	.name-label {
+		float: left;
+	}
+	.checkbox-label {
+		float: right;
 	}
 }

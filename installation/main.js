@@ -204,18 +204,34 @@ function drawPermissionsList() {
 
 		if(!deviceNamesSet && window.innerWidth >= 960) {
 			var deviceNames = document.getElementById('device-names'),
-				device;
+				device,
+				deviceInstall;
 			objectsForLater['deviceNames'] = [];
+
 			for(k; k<l; k++) {
 				device = document.createElement("div");
+				device.className = "name";
 				device.innerHTML = devices[k].name;
 				device.onclick = (function(active) {
 					return function() {
-						selectActive('deviceNames', active);
+						selectItem('deviceNames', active);
 					};
 				})(k);
 				objectsForLater['deviceNames'].push(device);
 				deviceNames.appendChild(device);
+
+				deviceInstall = document.createElement("div");
+				deviceInstall.className = "checkbox";
+				deviceInstall.onclick = (function(obj) {
+					return function() {
+						if(this.className.indexOf('selected') == '-1') {
+							addClass(this, 'selected');
+						} else {
+							removeClass(this, 'selected');
+						}
+					};
+				})(k);
+				deviceNames.appendChild(deviceInstall);
 			}
 			deviceNamesSet = true;
 		}
@@ -232,7 +248,7 @@ drawPermissionsList();
 
 function drawPermissionButtons(container, active) {
 		var classes = ['','',''];
-		classes[active] = ' active';
+		classes[active] = ' selected';
 		var docFragment = document.createDocumentFragment();
 
 		var b_allow = document.createElement("div");
@@ -251,26 +267,26 @@ function drawPermissionButtons(container, active) {
 		docFragment.appendChild(b_deny);
 
 		var buttons = [b_allow, b_prompt, b_deny];
-		b_allow.onclick = function() {selectActive(buttons, 0)};
-		b_prompt.onclick = function() {selectActive(buttons, 1)};
-		b_deny.onclick = function() {selectActive(buttons, 2)};
+		b_allow.onclick = function() {selectItem(buttons, 0)};
+		b_prompt.onclick = function() {selectItem(buttons, 1)};
+		b_deny.onclick = function() {selectItem(buttons, 2)};
 
 		//container.innerHTML = '';
 		container.appendChild(docFragment);
 }
 
-function selectActive(elements, active) {
+function selectItem(elements, active) {
 	if(typeof elements == 'string') {
 		elements = objectsForLater[elements];
 	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
-		console.log("selectActive: bad object type");
+		console.log("selectItem: bad object type");
 	}
 
 	for(var i in elements) {
 		if(i == active) {
-			addClass(elements[i], 'active');
+			addClass(elements[i], 'selected');
 			continue;
 		}
-		removeClass(elements[i], 'active');
+		removeClass(elements[i], 'selected');
 	}
 }
