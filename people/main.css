@@ -109,7 +109,7 @@ body {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	padding: 130px 10px 0;
+	padding: 120px 10px 10px;
 	/*text-transform: uppercase;*/
 	font-size: 90%;
 	text-shadow: 0px 0px 5px #999;
@@ -119,14 +119,78 @@ body {
 	background-size: 200px;
 	background-attachment: fixed;
 }
-#store-list-container > div {
+
+.button {
+	width: 49%;
+	margin: 0 auto;
+	padding: 0.3em;
+	border: 1px solid #111;
+	cursor: pointer;
+	display: inline-block;
+	height: 1.7em;
+	background: #222;
+	-webkit-box-shadow: 0 0 7px 2px #444;
+	box-shadow: 0 0 7px 2px #444;
+	color: white;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-align: center;
+}
+
+#people-list-container > div {
 	position: relative;
 	border-top: 1px dotted #DDD;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	min-height: 120px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
-#store-list-container > div:first-child, #store-list-container > div:last-child {
+#people-list-container > div:first-child {
 	border-top: none;
 }
 
+#people-list-container > div img {
+	width: 100px;
+	position: absolute;
+	margin: 0px 10px 10px 0;
+	top: 20px;
+}
+
+#people-list-container h3 {
+	font-size: 120%;
+	background-color: #0084FF;
+	color: white;
+	padding: 5px 0;
+	padding-left: 110px;
+}
+#people-list-container h4 {
+	font-size: 90%;
+	background-color: #DDD;
+	padding: 5px;
+	padding-left: 110px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#people-list-container h4+div {
+	margin-top: 0.5em;
+	padding-left: 110px;
+	font-size: 80%;
+}
+#people-list-container h4+div span {
+	font-weight: bold;
+}
+
+#people-list-container .button {
+	margin-left: 110px;
+	font-size: 80%;
+	margin-top: 10px;
+	width: 170px;
+}
+
+/*
 #store-list-container label {
 	width: 100%;
 	display: block;
@@ -151,7 +215,7 @@ body {
 }
 #store-list-container > div:not(#foo) > input[type=checkbox]:checked + label {
     background: url(img/check-s.png) 100% 50% no-repeat;
-}
+}*/
 
 
 /************************* MOBILE PART ENDS HERE */

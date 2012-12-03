@@ -320,7 +320,8 @@ h3 {
 
 @media screen and (min-width: 960px) {
 	body {
-		background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAAGElEQVQImWNgQID/DDgATgmCknRQQJyrAaFxB/mC2lhkAAAAAElFTkSuQmCC);
+		background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQImWNgYGD4z4AA/5H5/9EFMFSgC6BoRVEEAMa+DPREw/pNAAAAAElFTkSuQmCC);
+		/*background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAAGElEQVQImWNgQID/DDgATgmCknRQQJyrAaFxB/mC2lhkAAAAAElFTkSuQmCC);*/
 	}
 	.content {
 		width: 960px;
