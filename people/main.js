@@ -2,21 +2,27 @@ function getDayName(date) {
 	var dateNow = new Date();
 	var dateYesterday = new Date();
 	dateYesterday.setDate(dateNow.getDate() - 1);
+	var givenYear = date.getFullYear(),
+		givenMonth = date.getMonth(),
+		givenDay = date.getDate();
 
-	if (date.getYear() === dateNow.getFullYear() &&
-		date.getMonth() === dateNow.getMonth() &&
-		date.getDate() === dateNow.getDate()
+	if (givenYear === dateNow.getFullYear() &&
+		givenMonth === dateNow.getMonth() &&
+		givenDay === dateNow.getDate()
 		)
 	{
 		return 'Today';
-	} else if (	date.getYear() === dateYesterday.getFullYear() &&
-				date.getMonth() === dateYesterday.getMonth() &&
-				date.getDate() === dateYesterday.getDate()
-			)
+	} else if (	givenYear === dateYesterday.getFullYear() &&
+				givenMonth === dateYesterday.getMonth() &&
+				givenDay === dateYesterday.getDate()
+				)
 	{
 		return 'Yesterday';
 	} else {
-		return date.getDate()+'.'+date.getMonth()+'.'+date.getFullYear();
+		if(givenDay<10) givenDay = '0'+givenDay;
+		givenMonth+=1;
+		if(givenMonth<10) givenMonth = '0'+givenMonth;
+		return givenDay+'.'+givenMonth+'.'+givenYear;
 	}
 	/* else {
 		var day = date.getDay();
@@ -63,7 +69,7 @@ mocked.people = [{
 		name: "Tardar Sauce",
 		email: "grumpy@nonexistent.com",
 		img: "person1.png",
-		lastAccess: 1354532300428
+		lastAccess: new Date().getTime()
 	}, {
 		name: "Pokey Feline",
 		email: "pokey@nonexistent.com",
@@ -82,7 +88,7 @@ var generateMockedData = function(arrayObjectName, quantity) {
 			destArr.push({
 				name: "Lorem Ipsum "+(i+1),
 				email: "lorips"+(i+1)+"@nonexistent.com",
-				lastAccess: 1354032300428
+				lastAccess: 1341732300428-(123456789*i)
 			});
 		} //else {
 	}
@@ -93,7 +99,7 @@ generateMockedData('people', 3);
 
 //draw
 var drawPeopleList = function() {
-	var peopleListContainer = document.getElementById('people-list-container'),
+	var peopleListContainer = document.getElementById('people-list'),
 		html = '',
 		people = mocked.people,
 		i = 0,
@@ -111,14 +117,21 @@ var drawPeopleList = function() {
 		thaDate = new Date(people[i].lastAccess);
 
 		html += '' +
-			'<div>' +
+			'<li>' +
 				'<img src="img/'+pic+'">' +
-				'<h3>'+ people[i].name +'</h3>' +
-				'<h4>'+ people[i].email +'</h4>' +
-				'<div>Last used your personal zone: <span>'+ getDayName(thaDate)+', '+formatAMPM(thaDate) +'</span></div>' +
+				'<div class="name">'+ people[i].name +'</div>' +
+				'<div class="email">'+ people[i].email +'</div>' +
+				'<div class="lastused">Last used your personal zone: <span>'+ getDayName(thaDate)+', '+formatAMPM(thaDate) +'</span></div>' +
+				'<div class="lastused-timestamp">'+ thaDate.getTime() +'</div>' +
 				'<div class="button">Edit permissions</div>' +
-			'</div>';
+			'</li>';
 	}
 
 	peopleListContainer.innerHTML = html;
 }();
+
+var listOptions = {
+    valueNames: ['name', 'email', 'lastused-timestamp']
+};
+
+var peopleList = new List('people-list-container', listOptions);

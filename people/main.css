@@ -138,7 +138,7 @@ body {
 	text-align: center;
 }
 
-#people-list-container > div {
+#people-list-container li {
 	position: relative;
 	border-top: 1px dotted #DDD;
 	padding-top: 10px;
@@ -148,25 +148,25 @@ body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 }
-#people-list-container > div:first-child {
-	border-top: none;
+#people-list-container li:first-child {
+	margin-top:10px;
 }
 
-#people-list-container > div img {
+#people-list-container li img {
 	width: 100px;
 	position: absolute;
 	margin: 0px 10px 10px 0;
 	top: 20px;
 }
 
-#people-list-container h3 {
+#people-list-container .name {
 	font-size: 120%;
 	background-color: #0084FF;
 	color: white;
 	padding: 5px 0;
 	padding-left: 110px;
 }
-#people-list-container h4 {
+#people-list-container .email {
 	font-size: 90%;
 	background-color: #DDD;
 	padding: 5px;
@@ -174,20 +174,51 @@ body {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-#people-list-container h4+div {
+#people-list-container .lastused {
 	margin-top: 0.5em;
 	padding-left: 110px;
 	font-size: 80%;
 }
-#people-list-container h4+div span {
+#people-list-container .lastused span {
 	font-weight: bold;
+}
+#people-list-container .lastused-timestamp {
+	display: none;
 }
 
 #people-list-container .button {
-	margin-left: 110px;
 	font-size: 80%;
+}
+#people-list .button {
+	margin-left: 110px;
 	margin-top: 10px;
 	width: 170px;
+}
+
+#people-list-container input {
+	border: 1px solid #444;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 5px;
+}
+
+.search-container {
+	display: table;
+	width: 100%;
+	margin-top: 5px;
+}
+.search-container label {
+	display: table-cell;
+	white-space: nowrap;
+}
+.search-container input {
+	display: table-cell;
+	width: 100%;
+}
+
+.sort-container {
+	margin: 10px 0 15px;
 }
 
 /*
