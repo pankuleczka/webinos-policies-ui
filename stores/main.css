@@ -153,6 +153,92 @@ body {
     background: url(img/check-s.png) 100% 50% no-repeat;
 }
 
+.button {
+	width: 49%;
+	margin: 0 auto;
+	padding: 0.3em;
+	border: 1px solid #111;
+	cursor: pointer;
+	display: inline-block;
+	height: 1.7em;
+	background: #222;
+	-webkit-box-shadow: 0 0 7px 2px #444;
+	box-shadow: 0 0 7px 2px #444;
+	color: white;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-align: center;
+}
+
+#unknown-location {
+	margin-top: 1em;
+}
+#unk-loc-explained {
+
+}
+
+.permissions-controls {
+	margin: 1em 0;
+	-webkit-box-shadow: 0 0 7px 2px #aaa;
+	box-shadow: 0 0 7px 2px #aaa;
+}
+.permissions-controls > div {
+	width: 33%;
+	border: none;
+	border-bottom: 1px solid #222;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.permissions-controls > div + div {
+	width: 34%;
+}
+.permissions-controls > div + div + div {
+	width: 33%;
+}
+.allow.selected {color: #fff; border-bottom: 4px solid #0f0; background: #111;}
+.allow {color: #040; background: #eee;}
+.prompt.selected {color: #fff; border-bottom: 4px solid #ff0; background: #111;}
+.prompt {color: #440; background: #eee;}
+.deny.selected {color: #fff; border-bottom: 4px solid #f00; background: #111;}
+.deny {color: #400; background: #eee;}
+
+.info {
+	background: #fff;
+	color: #000;
+	padding-left: 2em !important;
+	position: relative;
+	overflow: hidden;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+.info:before {
+	content: 'INFO';
+	position: absolute;
+	top: 50%;
+	left: -50%;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+	-moz-transform-origin: 50% 0%;
+	-webkit-transform-origin: 50% 0%;
+	-o-transform-origin: 50% 0%;
+	-ms-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	background: #0084FF;
+	width: 100%;
+	text-align: center;
+	padding: 0.4em 0;
+	color: white;
+	font-size: 80%;
+	font-weight: bold;
+}
+
 
 /************************* MOBILE PART ENDS HERE */
 
@@ -169,9 +255,14 @@ body {
 		text-align: left;
 		height: 100%;
 		vertical-align: top;
+		background: #000 url(img/webinosBgDarkGray.png) 150px 50% no-repeat;
+		background-size: 500px;
+		border-bottom: 5px solid #0084FF;
 	}
 
 	.content {
+		height: 100%;
+		overflow: auto;
 		display: inline-block;
 		width: 460px;
 		text-align: left;
@@ -179,5 +270,10 @@ body {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		margin-left: -3px;
+		background: #fff url(img/webinosBgLightGray.png) -250px 50% no-repeat;
+		background-attachment: scroll;
+		background-size: 500px;
+		border-bottom: 5px solid #0084FF;
+		margin-bottom: -10px; /* inline-block whitespace hack/fix */
 	}
 }

@@ -264,9 +264,14 @@ body {
 		text-align: left;
 		height: 100%;
 		vertical-align: top;
+		background: #000 url(img/webinosBgDarkGray.png) 150px 50% no-repeat;
+		background-size: 500px;
+		border-bottom: 5px solid #0084FF;
 	}
 
 	.content {
+		height: 100%;
+		overflow: auto;
 		display: inline-block;
 		width: 460px;
 		text-align: left;
@@ -274,5 +279,10 @@ body {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		margin-left: -3px;
+		background: #fff url(img/webinosBgLightGray.png) -250px 50% no-repeat;
+		background-attachment: scroll;
+		background-size: 500px;
+		border-bottom: 5px solid #0084FF;
+		margin-bottom: -10px; /* inline-block whitespace hack/fix */
 	}
 }

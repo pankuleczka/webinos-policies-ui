@@ -302,7 +302,6 @@ h3 {
 .permissions-controls > div + div + div {
 	width: 33%;
 }
-
 .allow.selected {color: #fff; border-bottom: 4px solid #0f0; background: #111;}
 .allow {color: #040; background: #eee;}
 .prompt.selected {color: #fff; border-bottom: 4px solid #ff0; background: #111;}

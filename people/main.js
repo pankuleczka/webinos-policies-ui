@@ -95,7 +95,7 @@ var generateMockedData = function(arrayObjectName, quantity) {
 }
 
 // generate more mocked data
-generateMockedData('people', 3);
+generateMockedData('people', 8);
 
 //draw
 var drawPeopleList = function() {

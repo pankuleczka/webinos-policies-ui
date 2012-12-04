@@ -39,7 +39,7 @@ function domReady () {
 /* GENERAL */
 
 function removeClass(element, className) {
-	typeof element == 'object' ? element = element : element = document.getElementById(element);
+	if(typeof element != 'object') element = document.getElementById(element);
 	var classString = element.className;
 	var newClassString = '';
 	var indexPos = classString.indexOf(className);
@@ -55,7 +55,7 @@ function removeClass(element, className) {
 }
 
 function addClass(element, className) {
-	typeof element == 'object' ? element = element : element = document.getElementById(element);
+	if(typeof element != 'object') element = document.getElementById(element);
 	var classString = element.className;
 	if(classString != '') {
 		var indexPos = classString.indexOf(className);
