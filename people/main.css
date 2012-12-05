@@ -261,7 +261,7 @@ body {
 		border-bottom-width: 5px;
 		-webkit-box-shadow: 0 0 20px 0px #000;
 		box-shadow: 0 0 20px 0px #000;
-		width: 120px;
+		width: 130px;
 	}
 	.header img {
 		display: none;
@@ -306,22 +306,38 @@ body {
 		left: 0;
 	}
 	.title {
-		position: absolute;
 		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+		-moz-transform-origin: 0% 0%;
+		-webkit-transform-origin: 0% 0%;
+		-o-transform-origin: 0% 0%;
+		-ms-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
+		position: absolute;
 		bottom: -1em;
 		min-width: 1000px;
 		left: -0.1em;
-		-webkit-transform-origin: 0% 0%;
 		font-size: 600%;
 		font-weight: bold;
 		color: #0084FF;
 	}
 	.subtitle {
 		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		transform: rotate(-90deg);
+		-moz-transform-origin: 0% 0%;
+		-webkit-transform-origin: 0% 0%;
+		-o-transform-origin: 0% 0%;
+		-ms-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
 		position: absolute;
 		bottom: -0.9em;
 		width: 695px;
-		-webkit-transform-origin: 0% 0%;
 		left: 70px;
 		font-size: 300%;
 	}
