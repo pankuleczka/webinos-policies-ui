@@ -80,28 +80,21 @@ body {
 }
 .header img {
 	margin-left: 10px;
+	height: 20px;
 }
 
 .title {
 	width: 100%;
-	margin-top: 11px;
-	position: absolute;
-	right: 0;
-	top: 11px;
-	text-align: right;
-	background: #111;
 	z-index: -1;
-	text-shadow: 0 0 20px white;
 	padding-right: 10px;
+	font-size: 210%;
+	margin-left: 10px;
+	margin-top: 5px;
+	color: #0084FF;
 }
 .subtitle {
-	padding-top: 1em;
-	margin-top: 1em;
-	padding-bottom: 1em;
-	border-top: 4px double #0079C2;
-	font-size: 80%;
-	text-align: center;
-	background: #111;
+	font-size: 140%;
+	margin-left: 10px;
 }
 
 .content {
@@ -109,7 +102,7 @@ body {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	padding: 130px 10px 0;
+	padding: 120px 10px 20px;
 	/*text-transform: uppercase;*/
 	font-size: 90%;
 	text-shadow: 0px 0px 5px #999;
@@ -245,8 +238,10 @@ body {
 
 @media screen and (min-width: 960px) {
 	body {
-		background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQImWNgYGD4z4AA/5H5/9EFMFSgC6BoRVEEAMa+DPREw/pNAAAAAElFTkSuQmCC);
+		background: #7F7F7F url(img/webinosWithBorder.png) 10px 10px no-repeat;
 		text-align: center;
+		width: 100%;
+		overflow: hidden;
 	}
 	.header {
 		display: inline-block;
@@ -255,25 +250,55 @@ body {
 		text-align: left;
 		height: 100%;
 		vertical-align: top;
-		background: #000 url(img/webinosBgDarkGray.png) 150px 50% no-repeat;
-		background-size: 500px;
-		border-bottom: 5px solid #0084FF;
+		border-bottom-width: 5px;
+		-webkit-box-shadow: 0 0 20px 0px #000;
+		box-shadow: 0 0 20px 0px #000;
+		width: 120px;
+	}
+	.header img {
+		display: none;
 	}
 
 	.content {
 		height: 100%;
 		overflow: auto;
 		display: inline-block;
-		width: 460px;
+		width: 560px;
 		text-align: left;
 		box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		margin-left: -3px;
-		background: #fff url(img/webinosBgLightGray.png) -250px 50% no-repeat;
+		background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
 		background-attachment: scroll;
 		background-size: 500px;
 		border-bottom: 5px solid #0084FF;
 		margin-bottom: -10px; /* inline-block whitespace hack/fix */
+		padding-top: 10px;
+		-webkit-box-shadow: 0 0 20px 0px #555;
+		box-shadow: 0 0 20px 0px #555;
+		border-bottom: none;
+		font-size: 17px;
+	}
+
+	.title {
+		position: absolute;
+		-webkit-transform: rotate(-90deg);
+		bottom: -1em;
+		min-width: 1000px;
+		left: -0.1em;
+		-webkit-transform-origin: 0% 0%;
+		font-size: 600%;
+		font-weight: bold;
+		color: #0084FF;
+	}
+	.subtitle {
+		-webkit-transform: rotate(-90deg);
+		position: absolute;
+		bottom: -0.9em;
+		width: 695px;
+		-webkit-transform-origin: 0% 0%;
+		left: 70px;
+		font-size: 300%;
 	}
 }

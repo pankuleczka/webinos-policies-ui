@@ -91,22 +91,19 @@ h3 {
 }
 
 .title {
-	text-shadow: 0px 0px 10px #fff;
-	filter: dropshadow(color=#ffffff, offx=0, offy=0);
-	font-size: 140%;
+	font-size: 150%;
 	padding: 0 10px 5px 100px;
-	background: #111;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	text-align: right;
 }
 .subtitle {
-	padding-top: 5px;
-	display: inline-block;
 	/*border-top: 1px solid #FFFA00;*/
 	font-size: 90%;
-	margin-left: 100px;
-	color: #888;
+	padding: 5px 10px 5px 100px;
+	text-align: right;
+	color: #0084FF;
 }
 
 .content {
@@ -319,7 +316,7 @@ h3 {
 
 @media screen and (min-width: 960px) {
 	body {
-		background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQImWNgYGD4z4AA/5H5/9EFMFSgC6BoRVEEAMa+DPREw/pNAAAAAElFTkSuQmCC);
+		background: #222 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQImWNgYGD4z4AA/5H5/9EFMFSgC6BoRVEEAMa+DPREw/pNAAAAAElFTkSuQmCC);
 		/*background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAAGElEQVQImWNgQID/DDgATgmCknRQQJyrAaFxB/mC2lhkAAAAAElFTkSuQmCC);*/
 	}
 	.content {
@@ -400,7 +397,7 @@ h3 {
 		text-shadow: 0px 0px 20px white;
 	}
 	.subtitle {
-		margin-left: 200px;
+		padding-left: 200px;
 		font-size: 130%;
 	}
 
