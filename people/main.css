@@ -78,6 +78,11 @@ html, body {
 body {
 	font-family: 'OpenSansRegular';
 }
+
+.webinoslogo {
+	display: none;
+}
+
 .header {
 	font-family: 'OpenSansLight';
 	color: #fff;
@@ -275,6 +280,15 @@ body {
 		width: 100%;
 		overflow: hidden;
 	}
+
+	.webinoslogo {
+		display: block;
+		position: absolute;
+		padding: 10px;
+		top: 0;
+		left: 0;
+	}
+
 	.header {
 		display: inline-block;
 		position: relative;
@@ -303,7 +317,7 @@ body {
 		background-size: 500px;
 		border-bottom: 5px solid #0084FF;
 		margin-bottom: -10px; /* inline-block whitespace hack/fix */
-		padding-top: 10px;
+		padding: 10px 20px 20px;
 		box-shadow: none;
 		-webkit-box-shadow: none;
 		border-bottom: none;

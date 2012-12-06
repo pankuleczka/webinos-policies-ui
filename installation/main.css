@@ -78,6 +78,11 @@ html, body {
 body {
 	font-family: 'OpenSansRegular';
 }
+
+.webinoslogo {
+	display: none;
+}
+
 h1 {
 	font-size: 160%;
 	margin: 0.1em 0;
@@ -130,7 +135,7 @@ h3 {
 .content {
 	padding: 110px 10px 70px;
 	font-size: 90%;
-	background: #fff url(img/webinoslogograyW2.png) 50% 50% no-repeat;
+	background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
 	background-size: 200px;
 	background-attachment: fixed;
 	border: 1px solid #222;
@@ -251,8 +256,10 @@ h3 {
 }
 
 #permissions-list h1 {
-	margin: 1em 0 0.5em;
-	border-bottom: 1px dashed #0084FF;
+	margin: 0.5em 0 0.3em;
+	border-bottom: 1px solid #DDD;
+	font-family: 'OpenSansLight';
+	font-size: 200%;
 }
 #permissions-list > div {
 	margin-left: 1em;
@@ -263,6 +270,7 @@ h3 {
 	border-bottom: 1px solid #BBB;
 	cursor: pointer;
 	position: relative;
+	font-family: 'OpenSansLight';
 }
 #permissions-list h3 > span {
 	position: relative;
@@ -314,6 +322,7 @@ h3 {
 	border-bottom: 1px solid #222;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	vertical-align: bottom;
 }
 .permissions-controls > div + div {
 	width: 34%;
@@ -328,7 +337,7 @@ h3 {
 .deny.selected {color: #fff; border-bottom: 4px solid #f00; background: #111;}
 .deny {color: #400; background: #eee;}
 
-.name-label, .checkbox-label {
+.name-label, .checkbox-label, #device-names {
 	display: none;
 }
 
@@ -341,6 +350,15 @@ h3 {
 		background: #222 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQImWNgYGD4z4AA/5H5/9EFMFSgC6BoRVEEAMa+DPREw/pNAAAAAElFTkSuQmCC);
 		/*background: #333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAAGElEQVQImWNgQID/DDgATgmCknRQQJyrAaFxB/mC2lhkAAAAAElFTkSuQmCC);*/
 	}
+
+	.webinoslogo {
+		display: block;
+		position: absolute;
+		padding: 10px;
+		top: 0;
+		left: 0;
+	}
+
 	.content {
 		width: 960px;
 		box-sizing: border-box;
@@ -368,14 +386,15 @@ h3 {
 	.header-content {
 		position: absolute;
 		right: 50%;
-		background: #000;
 		height: 260px;
 		padding: 10px;
 		top: 20px;
 		padding-left: 40px;
-		-webkit-box-shadow: 0 0 40px black;
-		box-shadow: 0 0 40px black;
-		border-bottom: 5px solid #fff;
+		-webkit-box-shadow: 0 0 40px #000;
+		box-shadow: 0 0 40px #000;
+		border-bottom: 5px solid #000;
+		background: rgba(0, 0, 0, 0.9) url(img/webinosBgDarkGray.png) 260px 125px no-repeat;
+		background-size: 500px;
 	}
 	.footer {
 		position: absolute;
@@ -416,11 +435,11 @@ h3 {
 		padding-left: 200px;
 		font-size: 200%;
 		margin-top: 30px;
-		text-shadow: 0px 0px 20px white;
 	}
 	.subtitle {
 		padding-left: 200px;
 		font-size: 130%;
+		text-shadow: 0px 1px 0px black;
 	}
 
 	#permissions-explained {
@@ -437,7 +456,7 @@ h3 {
 		left: 30px;
 		width: 420px;
 		top: 390px;
-		border-top: 1px dashed #0084FF;
+		border-top: 5px solid #ddd;
 		padding-top: 10px;
 	}
 
@@ -451,11 +470,11 @@ h3 {
 		width: 480px;
 		display: inline-block;
 		font-size: 130%;
-		font-weight: bold;
 		color: #0084FF;
 		vertical-align: top;
-		padding-top: 440px;
+		padding-top: 460px;
 		padding-left: 20px;
+		border-right: 1px dashed #0084FF;
 	}
 	#device-names .name {
 		padding: 0.5em 0.5em;
@@ -472,6 +491,7 @@ h3 {
 	}
 	#device-names .name.selected, #device-names .name.selected:hover {
 		border-left-color: #000;
+		font-weight: bold;
 	}
 	#device-names .checkbox {
 		height: 30px;
@@ -487,11 +507,14 @@ h3 {
 		display: block;
 		color: #000;
 		margin-bottom: 1em;
+		font-size: 70%;
+		font-weight: bold;
 	}
 	.name-label {
 		float: left;
 	}
 	.checkbox-label {
 		float: right;
+		padding-right: 60px;
 	}
 }

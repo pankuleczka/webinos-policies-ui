@@ -210,7 +210,11 @@ function drawPermissionsList() {
 
 			for(k; k<l; k++) {
 				device = document.createElement("div");
-				device.className = "name";
+				if(k!=0) { //TODO, only mocked visual select now
+					device.className = "name";
+				} else {
+					device.className = "name selected";
+				}
 				device.innerHTML = devices[k].name;
 				device.onclick = (function(active) {
 					return function() {
