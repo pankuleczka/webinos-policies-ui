@@ -47,17 +47,39 @@ table {
 	border-spacing: 0;
 }
 
-/* END */
 
+/************************************** END */
+
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('fonts/OpenSans-Regular-webfont.eot');
+    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSansLight';
+    src: url('fonts/OpenSans-Light-webfont.eot');
+    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body {
 	height: 100%;
 }
 body {
-	/* Helvetica/Arial-based sans serif stack */
-	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'OpenSansRegular';
 }
 .header {
+	font-family: 'OpenSansLight';
 	color: #fff;
 	background: #000;
 	padding: 10px 0;
@@ -153,14 +175,15 @@ body {
 }
 
 #people-list-container .name {
-	font-size: 120%;
+	font-family: 'OpenSansLight';
+	font-size: 140%;
 	background-color: #0084FF;
 	color: white;
 	padding: 5px 0;
 	padding-left: 110px;
 }
 #people-list-container .email {
-	font-size: 90%;
+	font-size: 85%;
 	background-color: #DDD;
 	padding: 5px;
 	padding-left: 110px;
@@ -170,7 +193,7 @@ body {
 #people-list-container .lastused {
 	margin-top: 0.5em;
 	padding-left: 110px;
-	font-size: 80%;
+	font-size: 70%;
 }
 #people-list-container .lastused span {
 	font-weight: bold;
@@ -321,7 +344,6 @@ body {
 		min-width: 1000px;
 		left: -0.1em;
 		font-size: 600%;
-		font-weight: bold;
 		color: #0084FF;
 	}
 	.subtitle {

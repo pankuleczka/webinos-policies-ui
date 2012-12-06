@@ -86,7 +86,7 @@ var generateMockedData = function(arrayObjectName, quantity) {
 	for(i; i<quantity; i++) {
 		if(arrayObjectName == 'people') {
 			destArr.push({
-				name: "Lorem Ipsum "+(i+1),
+				name: "Loremford Ipsumov "+(i+1),
 				email: "lorips"+(i+1)+"@nonexistent.com",
 				lastAccess: 1341732300428-(123456789*i)
 			});

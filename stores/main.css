@@ -47,17 +47,39 @@ table {
 	border-spacing: 0;
 }
 
-/* END */
 
+/************************************** END */
+
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('fonts/OpenSans-Regular-webfont.eot');
+    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSansLight';
+    src: url('fonts/OpenSans-Light-webfont.eot');
+    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body {
 	height: 100%;
 }
 body {
-	/* Helvetica/Arial-based sans serif stack */
-	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: 'OpenSansRegular';
 }
 .header {
+	font-family: 'OpenSansLight';
 	color: #fff;
 	background: #000;
 	padding: 10px 0;
@@ -297,7 +319,6 @@ body {
 		min-width: 1000px;
 		left: -0.1em;
 		font-size: 600%;
-		font-weight: bold;
 		color: #0084FF;
 	}
 	.subtitle {
