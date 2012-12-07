@@ -103,11 +103,11 @@ h3 {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	border-bottom: 10px solid #FFFA00;
-	height: 110px;
+	border-bottom: 2px dashed #FFFA00;
+	height: 100px;
 	z-index: 10;
-	-webkit-box-shadow: 0 0 20px 0px #555;
-	box-shadow: 0 0 20px 0px #555;
+	-webkit-box-shadow: 0 0 30px 5px #000;
+	box-shadow: 0 0 30px 5px #000;
 }
 .header img {
 	position: absolute;
@@ -133,7 +133,7 @@ h3 {
 }
 
 .content {
-	padding: 110px 10px 70px;
+	padding: 110px 10px 80px;
 	font-size: 90%;
 	background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
 	background-size: 200px;
@@ -154,12 +154,12 @@ h3 {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	border-top: 10px solid #FFFA00;
-	height: 60px;
+	border-top: 2px dashed #FFFA00;
+	height: 50px;
 	text-align: center;
 	z-index: 10;
-	-webkit-box-shadow: 0 0 20px 0px #555;
-	box-shadow: 0 0 20px 0px #555;
+	-webkit-box-shadow: 0 0 30px 5px #000;
+	box-shadow: 0 0 30px 5px #000;
 }
 
 .button {
@@ -205,9 +205,6 @@ h3 {
 	background: #0084FF;
 	width: 2em;
 	float: right;
-}
-.button.device {
-	width: 80%;
 }
 
 #permissions-explained {
@@ -256,6 +253,23 @@ h3 {
 
 .permissions-device {
 	margin: 10px 0;
+	border-bottom: 5px solid #DDD;
+	padding-bottom: 10px;
+}
+.permissions-device .permissions-controls {
+	width: 80%;
+	margin-top: 0;
+	display: inline-block;
+}
+.permissions-device .permissions-controls .button {
+	width: 50%;
+	background: #EEE;
+	color: #111;
+}
+.permissions-device .permissions-controls .button.selected {
+	background: #111;
+	border-bottom: 4px solid #0084FF;
+	color: #fff;
 }
 
 #permissions-list h1 {
@@ -274,6 +288,7 @@ h3 {
 	cursor: pointer;
 	position: relative;
 	font-family: 'OpenSansLight';
+	padding-left: 0.5em;
 }
 #permissions-list h3 > span {
 	position: relative;
@@ -388,6 +403,8 @@ h3 {
 		margin: 0 auto;
 		background: none;
 		border: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
 	}
 	.header-content {
 		position: absolute;
@@ -407,6 +424,8 @@ h3 {
 		background: none;
 		border: none;
 		top: 40px;
+		-webkit-box-shadow: none;
+		box-shadow: none;
 	}
 	.footer-content {
 		padding: 10px;
@@ -462,8 +481,6 @@ h3 {
 		left: 30px;
 		width: 420px;
 		top: 390px;
-		border-top: 5px solid #ddd;
-		padding-top: 10px;
 	}
 
 	#permissions-list {

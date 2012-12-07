@@ -26,14 +26,11 @@ function domReady () {
 
 	helpButton.onclick = function() {showHideUsingHeight(permissionsExplainedContainer, '9em', '10px')};
 
-	var deviceButton = document.getElementById('perm-b-device');
-	deviceButton.onclick = function() {
-		if(deviceButton.innerHTML == 'Cross-device') {
-			deviceButton.innerHTML = 'Current device';
-		} else {
-			deviceButton.innerHTML = 'Cross-device';
-		}
-	};
+	var permDevCross = document.getElementById('perm-b-cross');
+	var permDevCurr = document.getElementById('perm-b-curr');
+	var permDevButtons = [permDevCross, permDevCurr]; //I could probably use objectsForLater here... TODO
+	permDevCross.onclick = function() {selectItem(permDevButtons, 0)};
+	permDevCurr.onclick = function() {selectItem(permDevButtons, 1)};
 }
 
 /* GENERAL */
