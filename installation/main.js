@@ -190,7 +190,7 @@ function drawPermissionsList() {
 		desc.className = "info";
 		name.onclick = (function(el, clickedEl) {
 			return function() {
-				showHideUsingHeight(el, '8em', '0px', clickedEl);
+				showHideUsingHeight(el, '8em', '5px', clickedEl);
 			};
 		})(desc, name);
 

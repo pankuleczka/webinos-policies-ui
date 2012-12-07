@@ -143,19 +143,20 @@ body {
 	width: 49%;
 	margin: 0 auto;
 	padding: 0.3em;
-	border: 1px solid #111;
 	cursor: pointer;
 	display: inline-block;
 	height: 1.7em;
 	background: #222;
-	-webkit-box-shadow: 0 0 7px 2px #444;
-	box-shadow: 0 0 7px 2px #444;
 	color: white;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	text-align: center;
-
+	box-shadow: 0 0 0 1px black;
+	-webkit-box-shadow: 0 0 0 1px black;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(255, 255, 255, 0.5) rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.5) rgba(255, 255, 255, 0.3);
 }
 
 #people-list-container li {
