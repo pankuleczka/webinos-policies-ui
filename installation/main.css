@@ -155,7 +155,6 @@ h3 {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	border-top: 2px dashed #FFFA00;
-	height: 50px;
 	text-align: center;
 	z-index: 10;
 	-webkit-box-shadow: 0 0 30px 5px #000;
@@ -187,15 +186,15 @@ h3 {
 	-webkit-box-shadow: inset 0 0 13px 1px #0084FF;
 	box-shadow: inset 0 0 13px 1px #0084FF;
 	color: white;
-	position: absolute;
-	right: 1em;
 	width: 60%;
 	font-weight: bold;
 }
+.button.install.update {
+	width: 45%;
+}
 .button.dontinstall {
 	width: 25%;
-	position: absolute;
-	left: 1em;
+	margin-right: 5%;
 	color: #BBB;
 	background: #222 url(img/arrow-back.png) 50% 50% repeat-x;
 	text-shadow: 1px 1px 2px black;
@@ -206,10 +205,18 @@ h3 {
 	width: 2em;
 	float: right;
 }
+.button.updatehelp {
+	background: #222;
+	border: 1px solid #555;
+	width: 10%;
+	margin-left: 5%;
+	display: none;
+}
 
 #permissions-explained {
 	max-height: 0; /*9em*/
 	padding: 0; /*10px*/
+	margin: 0; /*'0 5% 10px'*/
 	-webkit-box-shadow: inset 0 0 1px 1px #333;
 	box-shadow: inset 0 0 1px 1px #333;
 	font-size: 90%;
@@ -279,7 +286,7 @@ h3 {
 	font-size: 200%;
 }
 #permissions-list > div {
-	margin-left: 1em;
+	margin: 0 1em;
 }
 #permissions-list h3 {
 	background: rgba(200, 200, 200, 0.4);
@@ -362,6 +369,14 @@ h3 {
 	display: none;
 }
 
+#updateinfo {
+	font-size: 80%;
+	padding-right: 2em !important;
+	max-height: 0; /* 4em*/
+	margin: 0; /* 0 10px 10px */
+	padding: 0; /* 0.8em */
+}
+
 
 /************************* MOBILE PART ENDS HERE */
 
@@ -380,20 +395,14 @@ h3 {
 		left: 0;
 	}
 
-	.content {
-		width: 960px;
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-	}
-	.content, .header-content, .footer-content {
+	.content, .header-content {
 		margin: 0 auto;
 		position: relative;
 	}
-	.header-content, .footer-content {
-		width: 460px;
+	.header-content {
+		width: 480px;
 	}
-	.header, .footer {
+	.header {
 		padding: 0;
 		height: 0;
 		z-index: 1;
@@ -405,65 +414,79 @@ h3 {
 		border: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
+		height: 100%;
+		width: 50%;
 	}
 	.header-content {
 		position: absolute;
-		right: 50%;
+		/*right: 50%;
 		height: 260px;
 		padding: 10px;
 		top: 20px;
-		padding-left: 40px;
+		padding-left: 40px;*/
+		right: 0;
+		top: 0;
 		-webkit-box-shadow: 0 0 40px #000;
 		box-shadow: 0 0 40px #000;
 		border-bottom: 5px solid #000;
-		background: rgba(0, 0, 0, 0.9) url(img/webinosBgDarkGray.png) 260px 125px no-repeat;
+		background: rgba(0, 0, 0, 0.9) url(img/webinosBgDarkGray.png) 230px 50% no-repeat;
 		background-size: 500px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		height: 100%;
 	}
 	.footer {
+		width: 480px;
+		right: 50%;
 		position: absolute;
-		background: none;
-		border: none;
-		top: 40px;
-		-webkit-box-shadow: none;
-		box-shadow: none;
+		padding: 20px 0;
+		bottom: 0;
+		height: auto;
 	}
 	.footer-content {
-		padding: 10px;
-		position: absolute;
-		right: 50%;
-		top: 190px;
 	}
 	.content {
+		width: 960px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
 		min-height: 100%;
 		-webkit-box-shadow: inset 0 0 25px #333, 0 0 40px black;
 		box-shadow: inset 0 0 25px #333, 0 0 40px black;
 		overflow: auto;
-		padding: 10px 10px 70px;
+		padding: 10px 10px 40px;
 		background-size: 500px;
+		height:100%;
 	}
 	.button.install {
 		width: 90%;
 		position: static;
 		font-size: 120%;
 	}
+	.button.install.update {
+		width: 75%;
+	}
 	.button.dontinstall {
 		display: none;
 	}
+	.button.updatehelp {
+		font-size: 120%;
+	}
 
 	.header img {
-		left: auto;
-		right: 310px;
-		top: 20px;
+		position: static;
 		width: 160px;
+		display: block;
+		margin: 30px 40px 0 auto;
 	}
 	.title {
-		padding-left: 200px;
-		font-size: 200%;
-		margin-top: 30px;
+		padding: 30px 40px 5px 40px;
+		font-size: 300%;
 	}
 	.subtitle {
-		padding-left: 200px;
-		font-size: 130%;
+		padding: 5px 40px 5px 40px;
+		font-size: 140%;
 		text-shadow: 0px 1px 0px black;
 	}
 
@@ -485,8 +508,13 @@ h3 {
 
 	#permissions-list {
 		width: 380px;
-		display: inline-block;
-		margin-left: 20px;
+		/*display: inline-block;
+		margin-left: 20px;*/
+		margin-left: auto;
+		margin-right: 30px;
+	}
+	#permissions-list > div {
+		margin-right: 0;
 	}
 
 	#device-names {

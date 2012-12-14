@@ -10,14 +10,14 @@
 	<img class="webinoslogo" src="img/webinosWithBorder.png">
 	<div class="header">
 		<div class="header-content">
-			<img src="img/webinos_logo_app.png">
-			<div class="title">Application With a Lengthy Name</div>
-			<div class="subtitle">Super Developer X</div>
+			<img id="appimg" src="img/webinos_logo_app.png">
+			<div id="appname" class="title">App Name</div>
+			<div id="appdev" class="subtitle">Developer</div>
 		</div>
 	</div>
 
 	<div class="content" id="content">
-		<div id="permissions-explained" class="info">This page will allow you to set permissions for the application you are installing. By default you only set the permission for the <b>CURRENT</b> device. You can set permissions across devices, by clicking the button below.</div>
+		<!--<div id="permissions-explained" class="info">This page will allow you to set permissions for the application you are installing. By default you only set the permission for the <b>CURRENT</b> device. You can set permissions across devices, by clicking the button below.</div>
 		<div class="permissions-device">
 			<div class="permissions-controls"><div id="perm-b-cross" class="button selected">Cross-device</div><div id="perm-b-curr" class="button">Current device</div></div>
 			<div id="perm-b-expl" class="button help">?</div>
@@ -25,24 +25,16 @@
 		<div id="device-names">
 			<div class="name-label">Show permissions for:</div>
 			<div class="checkbox-label">Install on this device:</div>
-		</div>
+		</div>-->
 		<div id="permissions-list">
-			<!--<div id="current-device">
-				<h1>Location</h1>
-				<div>
-					<h3>Use Location<img src="img/arrow.png"></h3>
-					<p>This is used for providing location-based information such as nearby points of interest. This data will not be collected by any third party.</p>
-					<div class="permissions-controls">
-						<div class="button allow active">Allow</div><div class="button prompt">Prompt</div><div class="button deny">Deny</div>
-					</div>
-				</div>
-			</div>-->
+
 		</div>
 	</div>
 
 	<div class="footer">
 		<div class="footer-content">
-			<div class="button dontinstall">BACK</div><div class="button install">INSTALL</div>
+			<div id="updateinfo" class="info">This is an update. Your user data will not be overwritten.</div>
+			<div class="button dontinstall">BACK</div><div id="installbutton" class="button install">INSTALL</div><div id="updateinfo-button" class="button updatehelp">?</div>
 		</div>
 	</div>
 

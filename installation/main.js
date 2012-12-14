@@ -21,16 +21,23 @@ if ( document.addEventListener ) {
 }
 
 function domReady () {
-	var helpButton = document.getElementById('perm-b-expl');
+	// THIS CHUNK OF CODE COULD BE RESTORED FOR CROSS-/CURRENT/SPECIFIC DEVICE BUTTONS
+	/*var permissionsExplainedHelpButton = document.getElementById('perm-b-expl');
 	var permissionsExplainedContainer = document.getElementById('permissions-explained');
-
-	helpButton.onclick = function() {showHideUsingHeight(permissionsExplainedContainer, '9em', '10px')};
+	permissionsExplainedHelpButton.onclick = function() {showHideUsingHeight(permissionsExplainedContainer, '9em', '10px')};
 
 	var permDevCross = document.getElementById('perm-b-cross');
 	var permDevCurr = document.getElementById('perm-b-curr');
 	var permDevButtons = [permDevCross, permDevCurr]; //I could probably use objectsForLater here... TODO
 	permDevCross.onclick = function() {selectItem(permDevButtons, 0)};
-	permDevCurr.onclick = function() {selectItem(permDevButtons, 1)};
+	permDevCurr.onclick = function() {selectItem(permDevButtons, 1)};*/
+
+	var updateInfoHelpButton = document.getElementById('updateinfo-button');
+	var updateInfoContainer = document.getElementById('updateinfo');
+	updateInfoHelpButton.onclick = function() {showHideUsingHeight(updateInfoContainer, {h:'4em', p:'1em', m:'0 5% 10px'})};
+
+	fillInAppInfo();
+	drawPermissionsList();
 }
 
 /* GENERAL */
@@ -64,15 +71,20 @@ function addClass(element, className) {
 	}
 }
 
-function showHideUsingHeight(element, maxHeight, padding, clickedObj) {
+function showHideUsingHeight(element, styleObj, clickedObj) {
+	//styleObj can contain "h" for maxheight, "p" for padding and "m" for margin
+	console.log(this);
+	console.log(clickedObj);
 	var className = "unfolded";
 	if(element.style.maxHeight == '0px' || element.style.maxHeight == '0' || element.style.maxHeight == '') {
-		element.style.maxHeight = maxHeight;
-		element.style.padding = padding;
+		element.style.maxHeight = styleObj.h;
+		if(styleObj.p) element.style.padding = styleObj.p;
+		if(styleObj.m) element.style.margin = styleObj.m;
 		if(clickedObj) addClass(clickedObj, className);
 	} else {
 		element.style.maxHeight = '0px';
 		element.style.padding = '0px';
+		element.style.margin = '0px';
 		if(clickedObj) removeClass(clickedObj, className);
 	}
 }
@@ -84,6 +96,15 @@ function insertAfter(referenceNode, newNode) {
 /* MOCKS */
 
 var mocked = {};
+
+mocked.app = {
+	name: "Application With a Lengthy Name",
+	developer: "Super Developer X",
+	img: "webinos_logo_app.png",
+	ver: "0.1",
+	installed: !!(Math.floor(Math.random()*2))
+}
+
 mocked.permissions = [{
 		category: "Location",
 		name: "Use Location",
@@ -133,27 +154,45 @@ var generateMockedData = function(arrayObjectName, quantity) {
 }
 
 // generate more mocked data
-generateMockedData('permissions', 2);
-generateMockedData('devices', Math.floor(Math.random()*3));
+generateMockedData('permissions', 5);
+//generateMockedData('devices', Math.floor(Math.random()*3));
 
 
 //draw
 var objectsForLater = {}; //a place to gather all objects that I'm going to iterate later (onclick active class, and so on)
+
+function fillInAppInfo() {
+	var appimg = document.getElementById('appimg'),
+		appname = document.getElementById('appname'),
+		appdev = document.getElementById('appdev'),
+		installButton = document.getElementById('installbutton'),
+		updateInfoHelpButton = document.getElementById('updateinfo-button');
+
+		appimg.src = "img/"+mocked.app.img;
+		appname.innerHTML = mocked.app.name;
+		appdev.innerHTML = mocked.app.developer;
+
+		if(mocked.app.installed) {
+			addClass(installButton, 'update');
+			installButton.innerHTML = 'UPDATE';
+			updateInfoHelpButton.style.display = "inline-block";
+		}
+};
+
 function drawPermissionsList() {
 	var permissionsListContainer = document.getElementById('permissions-list'),
 		permissions = mocked.permissions,
-		devices = mocked.devices,
+		//devices = mocked.devices,
 		i = 0,
-		j = permissions.length,
-		k = 0,
-		l = devices.length,
-		deviceNamesSet = false;
+		j = permissions.length;
+		//k = 0,
+		//l = devices.length,
+		//deviceNamesSet = false;
 	objectsForLater.permissionCategories = {};
-	var headingsToScroll = [];
 
-	if(window.innerWidth < 960) {
+	/*if(window.innerWidth < 960) {
 		l = 1; //we don't want to generate other devices for a mobile ui
-	}
+	}*/
 
 	for(i; i<j; i++) {
 		var category,
@@ -164,12 +203,10 @@ function drawPermissionsList() {
 			category = document.createElement("h1");
 			category.innerHTML = permissions[i].category;
 			permissionsListContainer.appendChild(category);
-			headingsToScroll.push(category);
 		}
 
 		var name = document.createElement("h3");
 		name.innerHTML = permissions[i].name;
-		headingsToScroll.push(name);
 		if(permissions[i].required) {
 			var required = document.createElement("span");
 			required.innerHTML = "required";
@@ -187,7 +224,7 @@ function drawPermissionsList() {
 		desc.className = "info";
 		name.onclick = (function(el, clickedEl) {
 			return function() {
-				showHideUsingHeight(el, '8em', '5px', clickedEl);
+				showHideUsingHeight(el, {h:'8em', p:'5px'}, clickedEl);
 			};
 		})(desc, name);
 
@@ -199,44 +236,6 @@ function drawPermissionsList() {
 		drawPermissionButtons(permControls, permissions[i].permission);
 		permUnit.appendChild(permControls);
 
-		if(!deviceNamesSet && window.innerWidth >= 960) {
-			var deviceNames = document.getElementById('device-names'),
-				device,
-				deviceInstall;
-			objectsForLater['deviceNames'] = [];
-
-			for(k; k<l; k++) {
-				device = document.createElement("div");
-				if(k!=0) { //TODO, only mocked visual select now
-					device.className = "name";
-				} else {
-					device.className = "name selected";
-				}
-				device.innerHTML = devices[k].name;
-				device.onclick = (function(active) {
-					return function() {
-						selectItem('deviceNames', active);
-					};
-				})(k);
-				objectsForLater['deviceNames'].push(device);
-				deviceNames.appendChild(device);
-
-				deviceInstall = document.createElement("div");
-				deviceInstall.className = "checkbox";
-				deviceInstall.onclick = (function(obj) {
-					return function() {
-						if(this.className.indexOf('selected') == '-1') {
-							addClass(this, 'selected');
-						} else {
-							removeClass(this, 'selected');
-						}
-					};
-				})(k);
-				deviceNames.appendChild(deviceInstall);
-			}
-			deviceNamesSet = true;
-		}
-
 		if(!lastInsertedInCategory) {
 			permissionsListContainer.appendChild(permUnit);
 			objectsForLater.permissionCategories[permissions[i].category] = permUnit;
@@ -244,8 +243,45 @@ function drawPermissionsList() {
 			insertAfter(lastInsertedInCategory, permUnit);
 		}
 	}
+	/*if(!deviceNamesSet && window.innerWidth >= 960) {
+		var deviceNames = document.getElementById('device-names'),
+			device,
+			deviceInstall;
+		objectsForLater['deviceNames'] = [];
+
+		for(k; k<l; k++) {
+			device = document.createElement("div");
+			if(k!=0) { //TODO, only mocked visual select now
+				device.className = "name";
+			} else {
+				device.className = "name selected";
+			}
+			device.innerHTML = devices[k].name;
+			device.onclick = (function(active) {
+				return function() {
+					selectItem('deviceNames', active);
+				};
+			})(k);
+			objectsForLater['deviceNames'].push(device);
+			deviceNames.appendChild(device);
+
+			deviceInstall = document.createElement("div");
+			deviceInstall.className = "checkbox";
+			deviceInstall.onclick = (function(obj) {
+				return function() {
+					if(this.className.indexOf('selected') == '-1') {
+						addClass(this, 'selected');
+					} else {
+						removeClass(this, 'selected');
+					}
+				};
+			})(k);
+			deviceNames.appendChild(deviceInstall);
+		}
+		deviceNamesSet = true;
+	}*/
 };
-drawPermissionsList();
+//drawPermissionsList();
 
 function drawPermissionButtons(container, active) {
 		var classes = ['','',''];
