@@ -100,7 +100,7 @@ var mocked = {};
 mocked.app = {
 	name: "Application With a Lengthy Name",
 	developer: "Super Developer X",
-	img: "webinos_logo_app.png",
+	img: "app_placeholder_logo.png",
 	ver: "0.1",
 	installed: !!(Math.floor(Math.random()*2))
 }
