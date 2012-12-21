@@ -1,0 +1,66 @@
+.button {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+}
+
+.green {
+    color: #3e5706;
+    background: #a5cd4e;
+}
+
+.blue {
+    color: #19667d;
+    background: #70c9e3;
+}
+
+.gray {
+    color: #515151;
+    background: #d3d3d3;
+}
+
+
+<table border="1" cellspacing="2" width="30%" id="content"><tr><td class="content"> 
+<h2><span>Helen has requested access to:</span></h2>
+</td>
+</tr>
+</table>
+
+</table>
+
+<table border="1" cellspacing="1" width="30%" id="content" align="center"><tr><td class="content">
+
+<table border="1" cellspacing="1" width="30%" id="content" align="left"><tr><td class="content">
+<h2>This will affect all devices in your personal zone</h2>
+
+<ul>
+<img src="call.png" width=70 height=70>  
+<a href="" class="button green">Accept</a>
+<a href="" class="button blue">Deny</a>
+<a href="" class="button gray">Ask Later</a>
+</ul>  
+</td>
+</tr>
+</table>
+
+
+-------------------
+
+File Transfer: User can access any file(certainly there are limitations where user can access or not) on the PC everywhere they have internet. The mobile device can upload file to PCs as well.
+
+Video/Music Streaming: The PCs play role of a media server, mobile device can access any film, songs on the PC.
+
+Apps Transfer mobile device and PC can transfer their webinos apps with each other. With this tools user will save time to install and configure this app on the new device
+
+Data Synchronization User can define 2 folders on the 2 different webinos enabled devices, this folder will be automatically synchronizes with each other.
+
+
+
+
+
+
+

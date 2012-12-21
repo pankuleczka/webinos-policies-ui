@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webinos policies - known people</title>
+   	<meta charset="utf-8">
+	<link rel="stylesheet" href="main3.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body>
+	<img class="webinoslogo" src="img/webinosWithBorder.png">
+	<div class="header">
+		<img src="img/webinosWithBorder.png">
+		<div class="title">POLICY EDITOR</div>
+		<div class="subtitle">Known people</div>
+	</div>
+	<div id="people-list-container" class="content">
+		<div class="search-container">
+			<label for="peopleSearch">Search:</label>
+			<input class="search" id="peopleSearch" />
+		</div>
+		<div class="sort-container">
+			<div class="button sort" data-sort="name">Sort by name</div>
+			<div class="button sort" data-sort="lastused-timestamp">Sort by access date</div>
+		</div>
+		<ul id="people-list" class="list"></ul>
+	</div>
+	<script type="text/javascript" src="list.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

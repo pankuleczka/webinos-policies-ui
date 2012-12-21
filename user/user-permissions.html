@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webinos policies - connect to new user</title>
+   	<meta charset="utf-8">
+	<link rel="stylesheet" href="main.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body id="user-permissions-page">
+	<img class="webinoslogo" src="img/webinosWithBorder.png">
+	<div class="header">
+		<img src="img/webinosWithBorder.png">
+		<div class="title">REQUEST</div>
+		<div class="subtitle">PZ / device permissions</div>
+	</div>
+
+	<div id="user-permission-list-container" class="content">
+		<h3>Do you know this person?</h3>
+		<div class="user-perm-data">
+			<h1 id="newUserPermName">Name</h1>
+			<h2>has requested access to:</h2>
+			<img src="img/calling.png" width=70 height=70>
+			<div id="newUserPermList"></div>
+		</div>
+		<h2>This will affect all devices in your personal zone</h2><br>
+		<img src="img/call.png" width=70 height=70>
+		<div id="newUserPermDevList"></div>
+	</div>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
