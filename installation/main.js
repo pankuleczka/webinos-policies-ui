@@ -233,7 +233,8 @@ function drawPermissionsList() {
 
 		var permControls = document.createElement("div");
 		permControls.className = "permissions-controls";
-		drawPermissionButtons(permControls, permissions[i].permission);
+		permControls.id = "permButtons"+i;
+		drawPermissionButtons(permControls, [{n:"Allow",c:"allow"}, {n:"Allow once",c:"prompt"}, {n:"Deny",c:"deny"}], permissions[i].permission);
 		permUnit.appendChild(permControls);
 
 		if(!lastInsertedInCategory) {
@@ -283,33 +284,40 @@ function drawPermissionsList() {
 };
 //drawPermissionsList();
 
-function drawPermissionButtons(container, active) {
-		var classes = ['','',''];
-		classes[active] = ' selected';
-		var docFragment = document.createDocumentFragment();
+function drawPermissionButtons(container, buttons, active) {
+	if(typeof container != 'object') container = document.getElementById(container);
 
-		var b_allow = document.createElement("div");
-		b_allow.innerHTML = "Allow";
-		b_allow.className = "button allow"+classes[0];
-		docFragment.appendChild(b_allow);
+	var docFragment = document.createDocumentFragment();
+	var buttonObjList = objectsForLater[container.id] = []; //if the container has no id, clicking will not work
+	var tmpBtnObj;
+	var i = 0,
+		j = buttons.length;
 
-		var b_prompt = document.createElement("div");
-		b_prompt.innerHTML = "Prompt";
-		b_prompt.className = "button prompt"+classes[1];
-		docFragment.appendChild(b_prompt);
+	for(i;i<j;i++) {
+		tmpBtnObj = document.createElement("div");
+		tmpBtnObj.innerHTML = buttons[i].n;
+		tmpBtnObj.className = "button "+buttons[i].c;
 
-		var b_deny = document.createElement("div");
-		b_deny.innerHTML = "Deny";
-		b_deny.className = "button deny"+classes[2];
-		docFragment.appendChild(b_deny);
+		tmpBtnObj.onclick = (function(buttons, clickedEl) {
+			return function() {
+				selectItem(buttons, clickedEl);
+			};
+		})(container.id, i);
 
-		var buttons = [b_allow, b_prompt, b_deny];
-		b_allow.onclick = function() {selectItem(buttons, 0)};
-		b_prompt.onclick = function() {selectItem(buttons, 1)};
-		b_deny.onclick = function() {selectItem(buttons, 2)};
+		docFragment.appendChild(tmpBtnObj);
+		buttonObjList.push(tmpBtnObj);
+	}
 
-		//container.innerHTML = '';
-		container.appendChild(docFragment);
+	//set active button
+	if(!active) {
+		var active = 0;
+	}
+	addClass(buttonObjList[active], 'selected');
+
+	//set class for number of buttons
+	addClass(container, 'noOfButtons'+j);
+
+	container.appendChild(docFragment);
 }
 
 function selectItem(elements, active) {

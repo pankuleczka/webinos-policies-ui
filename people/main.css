@@ -276,7 +276,7 @@ body {
 
 @media screen and (min-width: 960px) {
 	body {
-		background: #000;
+		background: #7F7F7F;
 		text-align: center;
 		width: 100%;
 		overflow: hidden;
@@ -315,34 +315,18 @@ body {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		margin-left: -3px;
+		background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
+		background-attachment: scroll;
 		background-size: 500px;
 		border-bottom: 5px solid #0084FF;
 		margin-bottom: -10px; /* inline-block whitespace hack/fix */
 		padding: 10px 20px 20px;
-		box-shadow: none;
-		-webkit-box-shadow: none;
+		box-shadow: 0 0 20px 0px #555;
+		-webkit-box-shadow: 0 0 20px 0px #555;
 		border-bottom: none;
 		font-size: 100%;
 	}
-	.content:before {
-		content: '';
-		position: absolute;
-		z-index: -1;
-		background: #7f7f7f;
-		height: 100%;
-		width: 1500px;
-		top: 0;
-	}
-	.content:after {
-		content: '';
-		position: absolute;
-		z-index: -2;
-		background: #000 url(img/webinosWithBorder.png) 10px 10px no-repeat;
-		height: 100%;
-		width: 1500px;
-		top: 0;
-		left: 0;
-	}
+
 	.title {
 		-webkit-transform: rotate(-90deg);
 		-moz-transform: rotate(-90deg);

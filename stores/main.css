@@ -206,7 +206,6 @@ body {
 	box-shadow: 0px 0px 0px 1px #AAA;
 }
 .permissions-controls > div {
-	width: 33%;
 	border: none;
 	border-right: 1px solid #CCC;
 	border-bottom: 1px solid #222;
@@ -214,13 +213,26 @@ body {
 	box-shadow: none;
 	vertical-align: bottom;
 }
-.permissions-controls > div + div {
+/* 2 buttons */
+.permissions-controls.noOfButtons2 > div {
+	width: 50%;
+}
+/* 3 buttons */
+.permissions-controls.noOfButtons3 > div {
+	width: 33%;
+}
+.permissions-controls.noOfButtons3 > div + div {
 	width: 34%;
 }
-.permissions-controls > div + div + div {
+.permissions-controls.noOfButtons3 > div + div + div {
 	width: 33%;
 	border-right: none;
 }
+/* 4 buttons */
+.permissions-controls.noOfButtons4 > div {
+	width: 25%;
+}
+
 .allow.selected {color: #fff; border-bottom: 4px solid #0f0; background: #111;}
 .allow {color: #040; background: #eee;}
 .prompt.selected {color: #fff; border-bottom: 4px solid #ff0; background: #111;}
@@ -323,8 +335,8 @@ body {
 		border-bottom: 5px solid #0084FF;
 		margin-bottom: -10px; /* inline-block whitespace hack/fix */
 		padding: 10px 20px 20px;
-		-webkit-box-shadow: 0 0 20px 0px #555;
 		box-shadow: 0 0 20px 0px #555;
+		-webkit-box-shadow: 0 0 20px 0px #555;
 		border-bottom: none;
 		font-size: 17px;
 	}
