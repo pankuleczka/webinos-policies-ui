@@ -1,7 +1,79 @@
-/* document.ready equivalent
- * http://stackoverflow.com/questions/1795089/need-help-with-jquery-to-javascript/1795167#1795167
- */
+/* MOCKS */
 
+var mocked = {};
+
+mocked.app = {
+	name: "Application With a Lengthy Name",
+	developer: "Super Developer X",
+	img: "app_placeholder_logo.png",
+	ver: "0.1",
+	installed: !!(Math.floor(Math.random()*2))
+}
+
+mocked.permissions = [{
+	category: "Location",
+	name: "Use Location",
+	desc: "This is used for providing location-based information such as nearby points of interest. This data will not be collected by any third party.",
+	permission: 0,
+	required: false
+}, {
+	category: "Device Status",
+	name: "View battery life",
+	desc: "Allows an application to collect battery statistics.",
+	permission: 1,
+	required: true
+}, {
+	category: "Device Status",
+	name: "View Wi-Fi status",
+	desc: "Allows applications to access information about Wi-Fi networks.",
+	permission: 2,
+	required: true
+}];
+
+mocked.devices = [{
+	name: "Current device"
+}, {
+	name: "Samsung Galaxy Tab 10.1"
+}];
+
+//mock generator
+var generateMockedData = function(arrayObjectName, quantity) {
+	var i = 0,
+		destArr = mocked[arrayObjectName];
+
+	for(i; i<quantity; i++) {
+		if(arrayObjectName == 'permissions') {
+			destArr.push({
+				category: "Lorem "+(i+1),
+				name: "Lorem ipsum "+(i+1),
+				desc: "Bacon ipsum dolor sit amet andouille cow ham bacon pancetta ribeye beef ribs ground round.",
+				permission: Math.floor(Math.random()*3),
+				required: !!(Math.floor(Math.random()*2))
+			});
+		} else if(arrayObjectName == 'devices') {
+			destArr.push({
+				name: "Lorem "+(i+1),
+			});
+		}
+	}
+}
+
+// generate more mocked data
+generateMockedData('permissions', 5);
+//generateMockedData('devices', Math.floor(Math.random()*3));
+
+
+//------------------------->8---CUT-HERE---------------------------------------------------------
+
+
+var UIdata = {};
+UIdata = mocked; //to be changed during the integration
+
+
+/* INIT */
+
+
+/* document.ready equivalent (http://stackoverflow.com/questions/1795089/need-help-with-jquery-to-javascript/1795167#1795167) */
 // Mozilla, Opera, Webkit
 if ( document.addEventListener ) {
   document.addEventListener( "DOMContentLoaded", function(){
@@ -40,7 +112,9 @@ function domReady () {
 	drawPermissionsList();
 }
 
+
 /* GENERAL */
+
 
 function removeClass(element, className) {
 	if(typeof element != 'object') element = document.getElementById(element);
@@ -93,72 +167,26 @@ function insertAfter(referenceNode, newNode) {
 	referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-/* MOCKS */
+function selectItem(elements, active) {
+	if(typeof elements == 'string') {
+		elements = objectsForLater[elements];
+	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
+		console.log("selectItem: bad object type");
+	}
 
-var mocked = {};
-
-mocked.app = {
-	name: "Application With a Lengthy Name",
-	developer: "Super Developer X",
-	img: "app_placeholder_logo.png",
-	ver: "0.1",
-	installed: !!(Math.floor(Math.random()*2))
-}
-
-mocked.permissions = [{
-		category: "Location",
-		name: "Use Location",
-		desc: "This is used for providing location-based information such as nearby points of interest. This data will not be collected by any third party.",
-		permission: 0,
-		required: false
-	}, {
-		category: "Device Status",
-		name: "View battery life",
-		desc: "Allows an application to collect battery statistics.",
-		permission: 1,
-		required: true
-	}, {
-		category: "Device Status",
-		name: "View Wi-Fi status",
-		desc: "Allows applications to access information about Wi-Fi networks.",
-		permission: 2,
-		required: true
-	}];
-
-mocked.devices = [{
-		name: "Current device"
-	}, {
-		name: "Samsung Galaxy Tab 10.1"
-	}];
-
-//mock generator
-var generateMockedData = function(arrayObjectName, quantity) {
-	var i = 0,
-		destArr = mocked[arrayObjectName];
-
-	for(i; i<quantity; i++) {
-		if(arrayObjectName == 'permissions') {
-			destArr.push({
-				category: "Lorem "+(i+1),
-				name: "Lorem ipsum "+(i+1),
-				desc: "Bacon ipsum dolor sit amet andouille cow ham bacon pancetta ribeye beef ribs ground round.",
-				permission: Math.floor(Math.random()*3),
-				required: !!(Math.floor(Math.random()*2))
-			});
-		} else if(arrayObjectName == 'devices') {
-			destArr.push({
-				name: "Lorem "+(i+1),
-			});
+	for(var i in elements) {
+		if(i == active) {
+			addClass(elements[i], 'selected');
+			continue;
 		}
+		removeClass(elements[i], 'selected');
 	}
 }
 
-// generate more mocked data
-generateMockedData('permissions', 5);
-//generateMockedData('devices', Math.floor(Math.random()*3));
+
+/* DRAW */
 
 
-//draw
 var objectsForLater = {}; //a place to gather all objects that I'm going to iterate later (onclick active class, and so on)
 
 function fillInAppInfo() {
@@ -168,11 +196,11 @@ function fillInAppInfo() {
 		installButton = document.getElementById('installbutton'),
 		updateInfoHelpButton = document.getElementById('updateinfo-button');
 
-		appimg.src = "img/"+mocked.app.img;
-		appname.innerHTML = mocked.app.name;
-		appdev.innerHTML = mocked.app.developer;
+		appimg.src = "img/"+UIdata.app.img;
+		appname.innerHTML = UIdata.app.name;
+		appdev.innerHTML = UIdata.app.developer;
 
-		if(mocked.app.installed) {
+		if(UIdata.app.installed) {
 			addClass(installButton, 'update');
 			installButton.innerHTML = 'UPDATE';
 			updateInfoHelpButton.style.display = "inline-block";
@@ -181,8 +209,8 @@ function fillInAppInfo() {
 
 function drawPermissionsList() {
 	var permissionsListContainer = document.getElementById('permissions-list'),
-		permissions = mocked.permissions,
-		//devices = mocked.devices,
+		permissions = UIdata.permissions,
+		//devices = UIdata.devices,
 		i = 0,
 		j = permissions.length;
 		//k = 0,
@@ -318,20 +346,4 @@ function drawPermissionButtons(container, buttons, active) {
 	addClass(container, 'noOfButtons'+j);
 
 	container.appendChild(docFragment);
-}
-
-function selectItem(elements, active) {
-	if(typeof elements == 'string') {
-		elements = objectsForLater[elements];
-	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
-		console.log("selectItem: bad object type");
-	}
-
-	for(var i in elements) {
-		if(i == active) {
-			addClass(elements[i], 'selected');
-			continue;
-		}
-		removeClass(elements[i], 'selected');
-	}
 }

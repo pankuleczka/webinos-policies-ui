@@ -1,4 +1,44 @@
+/* MOCKS */
+
+var mocked = {};
+
+mocked.stores = [{
+	name: "apps.webinos.org",
+	allow: false
+}, {
+	name: "ubiapps.com",
+	allow: true
+}];
+
+//mock generator
+var generateMockedData = function(arrayObjectName, quantity) {
+	var i = 0,
+		randomnumber,
+		destArr = mocked[arrayObjectName];
+
+	for(i; i<quantity; i++) {
+		if(arrayObjectName == 'stores') {
+			destArr.push({
+				name: "lorem.ipsum"+(i+1)+".com",
+				allow: !!(Math.floor(Math.random()*2))
+			});
+		} //else {
+	}
+}
+
+// generate more mocked data
+generateMockedData('stores', 3);
+
+
+//------------------------->8---CUT-HERE---------------------------------------------------------
+
+
+var UIdata = {};
+UIdata = mocked; //to be changed during the integration
+
+
 /* GENERAL */
+
 
 function removeClass(element, className) {
 	if(typeof element != 'object') element = document.getElementById(element);
@@ -29,42 +69,32 @@ function addClass(element, className) {
 	}
 }
 
-// preliminary mocks
-var mocked = {};
-mocked.stores = [{
-		name: "apps.webinos.org",
-		allow: false
-	}, {
-		name: "ubiapps.com",
-		allow: true
-	}];
+function selectItem(elements, active) {
+	if(typeof elements == 'string') {
+		elements = objectsForLater[elements];
+	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
+		console.log("selectItem: bad object type");
+	}
 
-//mock generator
-var generateMockedData = function(arrayObjectName, quantity) {
-	var i = 0,
-		randomnumber,
-		destArr = mocked[arrayObjectName];
-
-	for(i; i<quantity; i++) {
-		if(arrayObjectName == 'stores') {
-			destArr.push({
-				name: "lorem.ipsum"+(i+1)+".com",
-				allow: !!(Math.floor(Math.random()*2))
-			});
-		} //else {
+	for(var i in elements) {
+		if(i == active) {
+			addClass(elements[i], 'selected');
+			continue;
+		}
+		removeClass(elements[i], 'selected');
 	}
 }
 
-// generate more mocked data
-generateMockedData('stores', 3);
 
-//draw
+/* DRAW */
+
+
 var objectsForLater = {}; //a place to gather all objects that I'm going to iterate later (onclick active class, and so on)
 
 var drawStoreList = function() {
 	var storeListContainer = document.getElementById('store-list-container'),
 		html = '',
-		stores = mocked.stores,
+		stores = UIdata.stores,
 		i = 0,
 		j = stores.length,
 		checked;
@@ -129,20 +159,4 @@ function drawPermissionButtons(container, buttons, active) {
 	addClass(container, 'noOfButtons'+j);
 
 	container.appendChild(docFragment);
-}
-
-function selectItem(elements, active) {
-	if(typeof elements == 'string') {
-		elements = objectsForLater[elements];
-	} else if(typeof elements != 'object' || (typeof elements == 'object' && isNaN(elements.length)) ) { //not an array
-		console.log("selectItem: bad object type");
-	}
-
-	for(var i in elements) {
-		if(i == active) {
-			addClass(elements[i], 'selected');
-			continue;
-		}
-		removeClass(elements[i], 'selected');
-	}
 }

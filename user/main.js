@@ -1,4 +1,43 @@
+/* MOCKS */
+
+var mocked = {};
+
+mocked.user = {
+	name: "Tardar Sauce",
+	email: "grumpy@nonexistent.com",
+	img: "person1.png",
+	lastAccess: null
+};
+mocked.permissions = [{
+	category: "Location",
+	name: "Use Location",
+	desc: "This is used for providing location-based information such as nearby points of interest. This data will not be collected by any third party.",
+	permission: 0,
+	required: false
+}, {
+	category: "Device Status",
+	name: "View battery life",
+	desc: "Allows an application to collect battery statistics.",
+	permission: 1,
+	required: true
+}, {
+	category: "Device Status",
+	name: "View Wi-Fi status",
+	desc: "Allows applications to access information about Wi-Fi networks.",
+	permission: 2,
+	required: true
+}];
+
+
+//------------------------->8---CUT-HERE---------------------------------------------------------
+
+
+var UIdata = {};
+UIdata = mocked; //to be changed during the integration
+
+
 /* GENERAL */
+
 
 function removeClass(element, className) {
 	if(typeof element != 'object') element = document.getElementById(element);
@@ -30,49 +69,23 @@ function addClass(element, className) {
 }
 
 
-// preliminary mocks
-var mocked = {};
-mocked.user = {
-		name: "Tardar Sauce",
-		email: "grumpy@nonexistent.com",
-		img: "person1.png",
-		lastAccess: null
-	};
-mocked.permissions = [{
-		category: "Location",
-		name: "Use Location",
-		desc: "This is used for providing location-based information such as nearby points of interest. This data will not be collected by any third party.",
-		permission: 0,
-		required: false
-	}, {
-		category: "Device Status",
-		name: "View battery life",
-		desc: "Allows an application to collect battery statistics.",
-		permission: 1,
-		required: true
-	}, {
-		category: "Device Status",
-		name: "View Wi-Fi status",
-		desc: "Allows applications to access information about Wi-Fi networks.",
-		permission: 2,
-		required: true
-	}];
+/* DRAW */
 
-//draw
+
 var objectsForLater = {}; //a place to gather all objects that I'm going to iterate later (onclick active class, and so on)
 
 var drawUserData = function() {
-	document.getElementById('newUserReqName').innerHTML = mocked.user.name;
-	document.getElementById('newUserReqImg').src = 'img/'+mocked.user.img;
+	document.getElementById('newUserReqName').innerHTML = UIdata.user.name;
+	document.getElementById('newUserReqImg').src = 'img/'+UIdata.user.img;
 
 	drawPermissionButtons("newUserReqButtons", [{n:"Allow",c:"allow"}, {n:"Deny",c:"deny"}]);
 }
 
 var drawUserPermissions = function() {
-	document.getElementById('newUserPermName').innerHTML = mocked.user.name;
+	document.getElementById('newUserPermName').innerHTML = UIdata.user.name;
 
 	var permissionsListContainer = document.getElementById('user-permission-list-container'),
-		permissions = mocked.permissions,
+		permissions = UIdata.permissions,
 		i = 0,
 		j = permissions.length;
 

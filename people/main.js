@@ -1,3 +1,50 @@
+/* MOCKS */
+
+var mocked = {};
+
+mocked.people = [{
+	name: "Tardar Sauce",
+	email: "grumpy@nonexistent.com",
+	img: "person1.png",
+	lastAccess: new Date().getTime()
+}, {
+	name: "Pokey Feline",
+	email: "pokey@nonexistent.com",
+	img: "person2.png",
+	lastAccess: 1354421200428
+}];
+
+//mock generator
+var generateMockedData = function(arrayObjectName, quantity) {
+	var i = 0,
+		randomnumber,
+		destArr = mocked[arrayObjectName];
+
+	for(i; i<quantity; i++) {
+		if(arrayObjectName == 'people') {
+			destArr.push({
+				name: "Loremford Ipsumov "+(i+1),
+				email: "lorips"+(i+1)+"@nonexistent.com",
+				lastAccess: 1341732300428-(123456789*i)
+			});
+		} //else {
+	}
+}
+
+// generate more mocked data
+generateMockedData('people', 8);
+
+
+//------------------------->8---CUT-HERE---------------------------------------------------------
+
+
+var UIdata = {};
+UIdata = mocked; //to be changed during the integration
+
+
+/* DATE MANIPULATION */
+
+
 function getDayName(date) {
 	var dateNow = new Date();
 	var dateYesterday = new Date();
@@ -63,45 +110,14 @@ function formatAMPM(date) {
 	  return strTime;
 }
 
-// preliminary mocks
-var mocked = {};
-mocked.people = [{
-		name: "Tardar Sauce",
-		email: "grumpy@nonexistent.com",
-		img: "person1.png",
-		lastAccess: new Date().getTime()
-	}, {
-		name: "Pokey Feline",
-		email: "pokey@nonexistent.com",
-		img: "person2.png",
-		lastAccess: 1354421200428
-	}];
 
-//mock generator
-var generateMockedData = function(arrayObjectName, quantity) {
-	var i = 0,
-		randomnumber,
-		destArr = mocked[arrayObjectName];
+/* DRAW */
 
-	for(i; i<quantity; i++) {
-		if(arrayObjectName == 'people') {
-			destArr.push({
-				name: "Loremford Ipsumov "+(i+1),
-				email: "lorips"+(i+1)+"@nonexistent.com",
-				lastAccess: 1341732300428-(123456789*i)
-			});
-		} //else {
-	}
-}
 
-// generate more mocked data
-generateMockedData('people', 8);
-
-//draw
 var drawPeopleList = function() {
 	var peopleListContainer = document.getElementById('people-list'),
 		html = '',
-		people = mocked.people,
+		people = UIdata.people,
 		i = 0,
 		j = people.length,
 		pic,
@@ -130,6 +146,8 @@ var drawPeopleList = function() {
 	peopleListContainer.innerHTML = html;
 }();
 
+
+// list.js
 var listOptions = {
     valueNames: ['name', 'email', 'lastused-timestamp']
 };
