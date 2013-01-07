@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webinos policy editor</title>
+   	<meta charset="utf-8">
+	<link rel="stylesheet" href="main.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body>
+	<img class="webinoslogo" src="img/webinosWithBorder.png">
+	<div class="header">
+		<img src="img/webinosWithBorder.png">
+		<div class="title">POLICY EDITOR</div>
+	</div>
+
+	<div class="header tabs" id="tabs">
+		<div id="linkTo-quickSettings" class="selected">Quick</div>
+		<div id="linkTo-appsPolicies">Apps</div>
+		<div id="linkTo-peoplePolicies">People</div>
+		<div id="linkTo-placesPolicies">Places</div>
+		<div id="linkTo-storesSettings">Stores</div>
+	</div>
+
+	<div class="content-container">
+		<!--<div id="tabs">
+			<div class="selected">Quick</div>
+			<div>Apps</div>
+			<div>People</div>
+			<div>Places</div>
+			<div>Stores</div>
+		</div>-->
+
+		<div id="quickSettings" class="content">
+			<div class="quickSettings-titles">
+				<h1 class="quickSettings-switches-title">Quick Settings</h1>
+				<h1 class="quickSettings-status-title">Device Status</h1>
+			</div>
+			<div id="quickSettings-switches"></div>
+			<div id="quickSettings-status"></div>
+		</div>
+
+		<div id="appsPolicies" class="content">
+			apps
+		</div>
+
+		<div id="peoplePolicies" class="content">
+			people
+		</div>
+
+		<div id="placesPolicies" class="content">
+			<div class="places-titles">
+				<h1 class="places-categories-title"></h1>
+				<h1 class="places-allow-title">Allow</h1>
+				<h1 class="places-deny-title">Deny</h1>
+			</div>
+
+			<div id="places-categories">
+				<div>Home</div>
+				<div>Office</div>
+				<div class="selected">Trip to dad's</div>
+				<div>Misc</div>
+			</div>
+			<div id="places-allow">
+				<div>Navigation</div>
+				<div>Pets</div>
+				<div>Sharing</div>
+			</div>
+			<div id="places-deny">
+				<div>Navigation</div>
+			</div>
+		</div>
+
+		<div id="storesSettings" class="content">
+			stores
+		</div>
+	</div>
+
+	<div class="header toolbar">
+		<div id="t-open">Open</div>
+		<div id="t-save">Save</div>
+		<div id="t-test">Test</div>
+		<div id="t-sync">Sync</div>
+		<hr>
+		<div id="t-add">Add</div>
+		<div id="t-del">Delete</div>
+	</div>
+
+	<div id="popup_overlay">
+		<div id="popup_container">
+			<div class="popup" id="popup-test">
+				<!--<div class="popup-close xclose">x</div>-->
+				<h1>Test Title</h1>
+				<div>Bacon ipsum dolor sit amet ham beef ribs pork loin ball tip pork belly prosciutto. T-bone short ribs flank rump meatball, andouille kielbasa pastrami capicola shankle strip steak tail.</div>
+				<div class="button popup-close ok">OK</div>
+				<div class="button popup-close">Cancel</div>
+			</div>
+
+			<div class="popup" id="popup-addToPolicy">
+				<div class="popup-close xclose">x</div>
+				<h1>Add to policy</h1>
+				<div class="button" id="popup-addToPolicy-category">New Category</div>
+				<div class="button" id="popup-addToPolicy-object">New Object</div>
+				<div class="button" id="popup-addToPolicy-service">New Service</div>
+			</div>
+
+			<div class="popup" id="popup-policyEntity">
+				<div class="popup-close xclose">x</div>
+				<h1>Name</h1>
+				<div class="button popup-close">Object</div>
+				<div class="button popup-close">Service</div>
+			</div>
+
+			<div class="popup" id="popup-policyEntity-edit">
+				<h1 id="policyEntity-edit-type-header">Edit Device Service</h1>
+				<div class="popup-tabs">
+					<div id="popup-policyEntity-edit-summary" class="selected">Summary</div>
+					<div id="popup-policyEntity-edit-details">Details</div>
+				</div>
+
+				<div id="policyEntity-edit-summary" class="popup-page">
+					<div class="popup-policyEntity-edit-row">
+						<label for="policyEntity-edit-name">Name</label>
+						<input type="text" id="policyEntity-edit-name">
+					</div>
+					<div class="popup-policyEntity-edit-row">
+						<label for="policyEntity-edit-app">Application</label>
+						<select id="policyEntity-edit-app">
+							<option value="kif">Kids in Focus</option>
+							<option value="poo">Prodigy of Ouroboros</option>
+						</select>
+					</div>
+					<div class="popup-policyEntity-edit-row">
+						<label for="policyEntity-edit-type" id="policyEntity-edit-type-label">Device Service</label>
+						<select id="policyEntity-edit-type">
+							<option value="gps">GPS</option>
+							<option value="sms">SMS</option>
+						</select>
+					</div>
+					<div class="popup-policyEntity-edit-row">
+						<label for="policyEntity-edit-action">Action</label>
+						<select id="policyEntity-edit-action">
+							<option value="allow">Allow</option>
+							<option value="deny">Deny</option>
+						</select>
+					</div>
+				</div>
+
+				<div id="policyEntity-edit-details" class="popup-page">
+					<textarea id="policyEntity-edit-detailsTextarea">Details</textarea>
+				</div>
+
+				<div class="button popup-close ok">Save</div>
+				<div class="button popup-close">Cancel</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="list.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
