@@ -179,6 +179,19 @@ var enablePopups = function() {
 
 }();
 
+var toolbarShowHide = function() {
+	objectsForLater.toolbar = document.getElementById('toolbar');
+	document.getElementById('toolbar-showhide').onclick = function() {
+		if(objectsForLater.toolbar.style.maxHeight != '100%') {
+			objectsForLater.toolbar.style.maxHeight = '100%';
+			addClass(this, 'hide');
+		} else {
+			objectsForLater.toolbar.style.maxHeight = '10px';
+			removeClass(this, 'hide');
+		}
+	};
+}();
+
 function policyEntityNewdit(newTypeOrId, previousPopup) {
 	var previousPopup;
 
@@ -195,8 +208,8 @@ function policyEntityNewdit(newTypeOrId, previousPopup) {
 }
 
 var drawQuickSettings = function() {
-	var quickSettingsSwitchesContainer = document.getElementById('quickSettings-switches'),
-		quickSettingsStatusContainer = document.getElementById('quickSettings-status'),
+	var quickSettingsSwitchesContainer = document.getElementById('quickSettings-switches-content'),
+		quickSettingsStatusContainer = document.getElementById('quickSettings-status-content'),
 		html = '',
 		quickSettings = UIdata.quickSettings,
 		quickStatus = UIdata.quickStatus,
