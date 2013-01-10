@@ -25,6 +25,7 @@ mocked.quickSettings = [{
 	enabled: false
 }];
 
+
 mocked.quickStatus = [{
 	name: "Internet",
 	status: false
@@ -32,6 +33,54 @@ mocked.quickStatus = [{
 	name: "GPS",
 	status: true
 }];
+
+
+mocked.stores = [{
+	name: "apps.webinos.org",
+	allow: false
+}, {
+	name: "ubiapps.com",
+	allow: true
+}];
+
+
+mocked.people = [{
+	name: "Tardar Sauce",
+	email: "grumpy@nonexistent.com",
+	img: "person1.png",
+	lastAccess: new Date().getTime()
+}, {
+	name: "Pokey Feline",
+	email: "pokey@nonexistent.com",
+	img: "person2.png",
+	lastAccess: 1354421200428
+}];
+
+//mock generator
+var generateMockedData = function(arrayObjectName, quantity) {
+	var i = 0,
+		randomnumber,
+		destArr = mocked[arrayObjectName];
+
+	for(i; i<quantity; i++) {
+		if(arrayObjectName == 'stores') {
+			destArr.push({
+				name: "lorem.ipsum"+(i+1)+".com",
+				allow: !!(Math.floor(Math.random()*2))
+			});
+		} else if(arrayObjectName == 'people') {
+			destArr.push({
+				name: "Loremford Ipsumov "+(i+1),
+				email: "lorips"+(i+1)+"@nonexistent.com",
+				lastAccess: 1341732300428-(123456789*i)
+			});
+		}
+	}
+}
+
+// generate more mocked data
+generateMockedData('stores', 3);
+generateMockedData('people', 8);
 
 /*
 //mock generator
@@ -111,6 +160,169 @@ function selectItem(elements, active) {
 		}
 		removeClass(elements[i], 'selected');
 	}
+}
+
+function showPopup(popup) {
+	objectsForLater.popupOverlay.style.display = "table";
+	objectsForLater.popupOverlay.style.top = document.body.scrollTop+'px'; //center
+	objectsForLater.popupContainer.style.display = "table-cell";
+	popup.style.display = "block";
+	document.body.style.overflow = "hidden";
+
+	if(!popup.closeButtonsInitialized) {
+		var closeButtons = popup.getElementsByClassName('popup-close'),
+			i=0,
+			j=closeButtons.length;
+
+		for(i; i<j; i++) {
+			closeButtons[i].onclick = function() {closePopup(popup);};
+		}
+
+		popup.closeButtonsInitialized = true;
+	}
+}
+
+function closePopup(popup) {
+	objectsForLater.popupOverlay.style.display = "none";
+	objectsForLater.popupContainer.style.display = "none";
+	popup.style.display = "none";
+	document.body.style.overflow = "visible";
+}
+
+function showPage(linkId) {
+	var pageId = linkId.split("-")[1];
+	if(pageId) {
+		var page;
+		if(objectsForLater.pages[pageId]) {
+			page = objectsForLater.pages[pageId];
+		} else {
+			page = document.getElementById(pageId);
+		}
+		currentPage.style.display = "none";
+		page.style.display = "block";
+		currentPage = page;
+	} else {
+		console.log("Can't show this page, bad id");
+	}
+}
+
+function disableQuickSettingsSwitch(name) {
+	var quickSettings = UIdata.quickSettings,
+		i = 0,
+		j = quickSettings.length;
+
+	for(i; i<j; i++) {
+		if(quickSettings[i].name == name) {
+			document.getElementById('myonoffswitch'+i).disabled = true;
+			addClass('qsnl'+i, 'disabled');
+			break;
+		}
+	}
+}
+
+function drawPermissionButtons(container, buttons, active) {
+	if(typeof container != 'object') container = document.getElementById(container);
+
+	var docFragment = document.createDocumentFragment();
+	var buttonObjList = objectsForLater[container.id] = []; //if the container has no id, clicking will not work
+	var tmpBtnObj;
+	var i = 0,
+		j = buttons.length;
+
+	for(i;i<j;i++) {
+		tmpBtnObj = document.createElement("div");
+		tmpBtnObj.innerHTML = buttons[i].n;
+		tmpBtnObj.className = "button "+buttons[i].c;
+
+		tmpBtnObj.onclick = (function(buttons, clickedEl) {
+			return function() {
+				selectItem(buttons, clickedEl);
+			};
+		})(container.id, i);
+
+		docFragment.appendChild(tmpBtnObj);
+		buttonObjList.push(tmpBtnObj);
+	}
+
+	//set active button
+	if(!active) {
+		var active = 0;
+	}
+	addClass(buttonObjList[active], 'selected');
+
+	//set class for number of buttons
+	addClass(container, 'noOfButtons'+j);
+
+	container.appendChild(docFragment);
+}
+
+
+/* DATE MANIPULATION */
+
+
+function getDayName(date) {
+	var dateNow = new Date();
+	var dateYesterday = new Date();
+	dateYesterday.setDate(dateNow.getDate() - 1);
+	var givenYear = date.getFullYear(),
+		givenMonth = date.getMonth(),
+		givenDay = date.getDate();
+
+	if (givenYear === dateNow.getFullYear() &&
+		givenMonth === dateNow.getMonth() &&
+		givenDay === dateNow.getDate()
+		)
+	{
+		return 'Today';
+	} else if (	givenYear === dateYesterday.getFullYear() &&
+				givenMonth === dateYesterday.getMonth() &&
+				givenDay === dateYesterday.getDate()
+				)
+	{
+		return 'Yesterday';
+	} else {
+		if(givenDay<10) givenDay = '0'+givenDay;
+		givenMonth+=1;
+		if(givenMonth<10) givenMonth = '0'+givenMonth;
+		return givenDay+'.'+givenMonth+'.'+givenYear;
+	}
+	/* else {
+		var day = date.getDay();
+		switch (day) {
+		case 0:
+			return 'Sunday';
+			break;
+		case 1:
+			return 'Monday';
+			break;
+		case 2:
+			return 'Tuesday';
+			break;
+		case 3:
+			return 'Wednesday';
+			break;
+		case 4:
+			return 'Thursday';
+			break;
+		case 5:
+			return 'Friday';
+			break;
+		case 6:
+			return 'Saturday';
+			break;
+		}
+	}*/
+}
+
+function formatAMPM(date) {
+	  var hours = date.getHours();
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'pm' : 'am';
+	  var hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  strTime = hours + ':' + minutes + ' ' + ampm;
+	  return strTime;
 }
 
 
@@ -258,57 +470,77 @@ var drawQuickSettings = function() {
 	quickSettingsStatusContainer.innerHTML = html;
 }();
 
-function disableQuickSettingsSwitch(name) {
-	var quickSettings = UIdata.quickSettings,
+
+var drawStoreList = function() {
+	var storeListContainer = document.getElementById('storesSettings'),
+		html = '',
+		stores = UIdata.stores,
 		i = 0,
-		j = quickSettings.length;
+		j = stores.length,
+		checked;
 
 	for(i; i<j; i++) {
-		if(quickSettings[i].name == name) {
-			document.getElementById('myonoffswitch'+i).disabled = true;
-			addClass('qsnl'+i, 'disabled');
-			break;
-		}
-	}
-}
-
-function showPopup(popup) {
-	objectsForLater.popupOverlay.style.display = "table";
-	objectsForLater.popupContainer.style.display = "table-cell";
-	popup.style.display = "block";
-
-	if(!popup.closeButtonsInitialized) {
-		var closeButtons = popup.getElementsByClassName('popup-close'),
-			i=0,
-			j=closeButtons.length;
-
-		for(i; i<j; i++) {
-			closeButtons[i].onclick = function() {closePopup(popup);};
-		}
-
-		popup.closeButtonsInitialized = true;
-	}
-}
-
-function closePopup(popup) {
-	objectsForLater.popupOverlay.style.display = "none";
-	objectsForLater.popupContainer.style.display = "none";
-	popup.style.display = "none";
-}
-
-function showPage(linkId) {
-	var pageId = linkId.split("-")[1];
-	if(pageId) {
-		var page;
-		if(objectsForLater.pages[pageId]) {
-			page = objectsForLater.pages[pageId];
+		if(stores[i].allow) {
+			checked = ' checked="checked"';
 		} else {
-			page = document.getElementById(pageId);
+			checked = '';
 		}
-		currentPage.style.display = "none";
-		page.style.display = "block";
-		currentPage = page;
-	} else {
-		console.log("Can't show this page, bad id");
+		html += '' +
+			'<div>' +
+				'<input type="checkbox"'+checked+' id="store'+i+'">' +
+				'<label for="store'+i+'">'+ stores[i].name +'</label>' +
+			'</div>';
 	}
-}
+
+	html += '' +
+		'<hr>' +
+		'<div id="unknown-location">' +
+			'<div>Allow apps to be installed from other locations</div>' +
+			'<div class="permissions-controls" id="unk-loc-per-con"></div>' +
+			'<div id="unk-loc-explained" class="info">"Allow once" will allow installation for the next application only, then it will change to "Deny".</div>' +
+		'</div>';
+
+	storeListContainer.innerHTML = html;
+
+	drawPermissionButtons('unk-loc-per-con', [{n:"Allow",c:"allow"}, {n:"Allow once",c:"prompt"}, {n:"Deny",c:"deny"}], 1);
+}();
+
+var drawPeopleList = function() {
+	var peopleListContainer = document.getElementById('people-list'),
+		html = '',
+		people = UIdata.people,
+		i = 0,
+		j = people.length,
+		pic,
+		date;
+
+	for(i; i<j; i++) {
+		if(!people[i].img) {
+			pic = 'placeholder.png';
+		} else {
+			pic = people[i].img;
+		}
+
+		thaDate = new Date(people[i].lastAccess);
+
+		html += '' +
+			'<li>' +
+				'<img src="img/'+pic+'">' +
+				'<div class="name">'+ people[i].name +'</div>' +
+				'<div class="email">'+ people[i].email +'</div>' +
+				'<div class="lastused">Last used your personal zone: <span>'+ getDayName(thaDate)+', '+formatAMPM(thaDate) +'</span></div>' +
+				'<div class="lastused-timestamp">'+ thaDate.getTime() +'</div>' +
+				'<div class="button">Edit permissions</div>' +
+			'</li>';
+	}
+
+	peopleListContainer.innerHTML = html;
+}();
+
+
+// list.js
+var listOptions = {
+    valueNames: ['name', 'email', 'lastused-timestamp']
+};
+
+var peopleList = new List('peoplePolicies', listOptions);

@@ -46,7 +46,15 @@
 		</div>
 
 		<div id="peoplePolicies" class="content">
-			people
+			<div class="search-container">
+				<label for="peopleSearch">Search:</label>
+				<input class="search" id="peopleSearch" />
+			</div>
+			<div class="sort-container">
+				<div class="button sort" data-sort="name">Sort by name</div>
+				<div class="button sort" data-sort="lastused-timestamp">Sort by access date</div>
+			</div>
+			<ul id="people-list" class="list"></ul>
 		</div>
 
 		<div id="placesPolicies" class="content">
@@ -73,7 +81,6 @@
 		</div>
 
 		<div id="storesSettings" class="content">
-			stores
 		</div>
 	</div>
 
