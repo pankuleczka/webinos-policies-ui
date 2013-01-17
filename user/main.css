@@ -92,6 +92,14 @@ h3 {
 	margin: 0.1em 0;
 }
 
+p {
+	margin: 0.5em 0;
+}
+
+b {
+	font-weight: bold;
+}
+
 .header {
 	font-family: 'OpenSansLight';
 	color: #fff;
@@ -149,7 +157,7 @@ h3 {
 }
 
 .button {
-	width: 25%;
+	width: 30%;
 	margin: 0 auto;
 	padding: 0.3em;
 	cursor: pointer;
@@ -286,6 +294,10 @@ h3 {
 	display: block;
 	background: #0084FF;
 	text-shadow: 0 1px 1px black;
+}
+
+#newUserReqInfo {
+	margin-top: 1.5em;
 }
 
 /************************* MOBILE PART ENDS HERE */

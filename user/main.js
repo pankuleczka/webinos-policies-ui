@@ -76,6 +76,8 @@ var objectsForLater = {}; //a place to gather all objects that I'm going to iter
 
 var drawUserData = function() {
 	document.getElementById('newUserReqName').innerHTML = UIdata.user.name;
+	document.getElementById('newUserReqNameInfo1').innerHTML = UIdata.user.name;
+	document.getElementById('newUserReqNameInfo2').innerHTML = UIdata.user.name;
 	document.getElementById('newUserReqImg').src = 'img/'+UIdata.user.img;
 
 	drawPermissionButtons("newUserReqButtons", [{n:"Allow",c:"allow"}, {n:"Deny",c:"deny"}]);
