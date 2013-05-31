@@ -78,7 +78,11 @@ var drawUserData = function() {
 	document.getElementById('newUserReqName').innerHTML = UIdata.user.name;
 	document.getElementById('newUserReqNameInfo1').innerHTML = UIdata.user.name;
 	document.getElementById('newUserReqNameInfo2').innerHTML = UIdata.user.name;
-	document.getElementById('newUserReqImg').src = 'img/'+UIdata.user.img;
+	var usrImg = document.getElementById('newUserReqImg');
+	usrImg.src = 'img/'+UIdata.user.img;
+	usrImg.onerror = function(){
+		usrImg.src = 'img/userPlaceholder.png';
+	};
 
 	drawPermissionButtons("newUserReqButtons", [{n:"Allow",c:"allow"}, {n:"Deny",c:"deny"}]);
 }
