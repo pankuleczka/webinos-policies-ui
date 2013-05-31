@@ -175,8 +175,9 @@ function enableMenuAndInitFirstPage(id, type) {
 	for(i;i<j;i++) {
 		clickables[i].onclick = (function(elements, clickedEl, type) {
 			return function() {
-				if(window.skipNextClick == true) { //TODO
-					window.skipNextClick = false;
+				console.log(this);
+				if(window.skipNextClick == this) { //TODO
+					window.skipNextClick = null;
 					return;
 				}
 				selectItem(elements, clickedEl);
@@ -397,41 +398,6 @@ function hideMenu() {
 	appData.menuVisible = false;
 }
 
-
-
-
-
-
-
-/**
- * requestAnimationFrame and cancel polyfill
- */
-/*(function() {
-	var lastTime = 0;
-	var vendors = ['ms', 'moz', 'webkit', 'o'];
-	for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-		window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-		window.cancelAnimationFrame =
-				window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-	}
-
-	if (!window.requestAnimationFrame)
-		window.requestAnimationFrame = function(callback, element) {
-			var currTime = new Date().getTime();
-			var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-			var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-					timeToCall);
-			lastTime = currTime + timeToCall;
-			return id;
-		};
-
-	if (!window.cancelAnimationFrame)
-		window.cancelAnimationFrame = function(id) {
-			clearTimeout(id);
-		};
-}());*/
-
-
 function SwipeableTabs(elId, containerId) {
 	var that = this;
 
@@ -493,13 +459,13 @@ function SwipeableTabs(elId, containerId) {
 			case 'touch':
 				that.setDimensions();
 				that.oldDeltaX = 0;
-				window.skipNextClick = false; //TODO
+				window.skipNextClick = null; //TODO
 				break;
 			case 'dragright':
 			case 'dragleft':
 				that.setContainerOffset(ev.gesture.deltaX - that.oldDeltaX);
 				that.oldDeltaX = ev.gesture.deltaX;
-				window.skipNextClick = true; //TODO
+				window.skipNextClick = ev.target; //TODO
 				break;
 		}
 	}
