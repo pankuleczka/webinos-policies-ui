@@ -45,11 +45,13 @@ mocked.stores = [{
 
 
 mocked.people = [{
+	id: 1,
 	name: "Tardar Sauce",
 	email: "grumpy@nonexistent.com",
 	img: "person1.png",
 	lastAccess: new Date().getTime()
 }, {
+	id: 2,
 	name: "Pokey Feline",
 	email: "pokey@nonexistent.com",
 	img: "person2.png",
@@ -88,6 +90,7 @@ mocked.apps = {
 mocked.permissions = [{
 	id: 0,
 	profileId: 3,
+	personId: 1,
 	name: "Navigation",
 	app: "kidsinfocus",
 	service: "gps",
@@ -95,6 +98,7 @@ mocked.permissions = [{
 }, {
 	id: 1,
 	profileId: 3,
+	personId: 1,
 	name: "Wifi",
 	app: "kidsinfocus",
 	service: "wifi",
@@ -102,6 +106,7 @@ mocked.permissions = [{
 }, {
 	id: 2,
 	profileId: 3,
+	personId: 1,
 	name: "Photos",
 	app: "webinostravel",
 	service: "photo",
@@ -109,6 +114,7 @@ mocked.permissions = [{
 }, {
 	id: 3,
 	profileId: 3,
+	personId: 1,
 	name: "Camera",
 	app: "kidsinfocus",
 	service: "video",
@@ -116,6 +122,7 @@ mocked.permissions = [{
 }, {
 	id: 4,
 	profileId: 3,
+	personId: 1,
 	name: "GPS",
 	app: "littlespy",
 	service: "gps",
@@ -123,9 +130,26 @@ mocked.permissions = [{
 }, {
 	id: 5,
 	profileId: 1,
+	personId: 1,
 	name: "Camera",
 	app: "kidsinfocus",
 	service: "video",
+	perm: 1
+}, { //2nd person
+	id: 6,
+	profileId: 1,
+	personId: 2,
+	name: "GPS",
+	app: "littlespy",
+	service: "gps",
+	perm: -1
+}, {
+	id: 7,
+	profileId: 1,
+	personId: 2,
+	name: "Wifi",
+	app: "ouroboros",
+	service: "wifi",
 	perm: 1
 }];
 
@@ -382,35 +406,60 @@ var drawPlaces = function() {
 	var docFrag = document.createDocumentFragment(),
 		profiles = appData.profiles || [],
 		i = 0,
-		j = profiles.length;
+		profLength = profiles.length,
+		people = appData.people || [],
+		j = people.length;
 
 	appData.places = {};
 	domObjs.places = {};
 	domObjs.places.profileListContainer = document.getElementById('places-profiles');
+	domObjs.places.peopleSelect = document.getElementById('places-people');
 	domObjs.places.allow = document.getElementById('places-allow');
 	domObjs.places.prompt = document.getElementById('places-prompt');
 	domObjs.places.deny = document.getElementById('places-deny');
 	domObjs.places.profiles = {};
 	domObjs.places.permissions = {};
 
-	for(i; i<j; i++) {
+	//profile list
+	for(i; i<profLength; i++) {
 		createProfileListEntry(profiles[i], docFrag);
 		if(i == 0) {
 			setActiveProfile(profiles[i].id); //initial highlight
 		}
 	}
-
 	domObjs.places.profileListContainer.appendChild(docFrag);
+
+	//people drop-down
+	docFrag = document.createDocumentFragment();
+	i = 0;
+	var option, key;
+	for(i; i<j; i++) {
+		option = document.createElement("option");
+		option.setAttribute('value', people[i].id);
+		option.textContent = people[i].name;
+		docFrag.appendChild(option);
+		if(i == 0) {
+			setActivePerson(people[i].id); //init internal state
+		}
+	}
+	domObjs.places.peopleSelect.appendChild(docFrag);
+	domObjs.places.peopleSelect.onchange = function() {
+		var id = this.options[this.selectedIndex].value;
+		setActivePerson(id);
+		drawPlacesPermissions();
+	}
+
 	dragDropInitColumns();
 
-	if(profiles.length > 0) {
-		drawPlacesPermissions(appData.places.currentProfileId);
+	if(profLength > 0) {
+		drawPlacesPermissions();
 	}
 
 	//popup form
-	var docFrag = document.createDocumentFragment(),
-		option;
-	for (var key in appData.apps) {
+	docFrag = document.createDocumentFragment();
+	option = null;
+	key = null;
+	for (key in appData.apps) {
 		if (appData.apps.hasOwnProperty(key)) {
 			option = document.createElement("option");
 			option.setAttribute('value', key);
@@ -450,6 +499,10 @@ function setActiveProfile(id) {
 	domObjs.places.currentProfileDiv = obj;
 }
 
+function setActivePerson(id) {
+	appData.places.currentPersonId = id;
+}
+
 function createPermissionEntry(permission, docFrag) {
 	var entry,
 		name,
@@ -485,8 +538,10 @@ function createPermissionEntry(permission, docFrag) {
 	return entry;
 }
 
-function drawPlacesPermissions(profileId) {
-	if(!profileId) return false;
+function drawPlacesPermissions() {
+	profileId = appData.places.currentProfileId;
+	personId = appData.places.currentPersonId;
+	if(!profileId || !personId) return false;
 
 	domObjs.places.allow.innerHTML = '';
 	domObjs.places.prompt.innerHTML = '';
@@ -500,7 +555,7 @@ function drawPlacesPermissions(profileId) {
 		j = permissions.length;
 
 	for(i; i<j; i++) {
-		if(permissions[i].profileId == profileId) {
+		if(permissions[i].profileId == profileId && permissions[i].personId == personId) {
 			if(permissions[i].perm == 1) {
 				docFrag = docFragAllow;
 			} else if(permissions[i].perm == 0) {
@@ -526,7 +581,7 @@ function placesOpenProfile(id) {
 	}
 	//set active + higlight + draw
 	setActiveProfile(id);
-	drawPlacesPermissions(id);
+	drawPlacesPermissions();
 }
 
 function placesAddEditProfile() {

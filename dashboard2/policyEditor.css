@@ -1,3 +1,7 @@
+#tabTo-appsPolicies, #tabTo-placesPolicies {
+	display: none;
+}
+
 /* QUICK SETTINGS */
 
 #quickSettings-switches, #quickSettings-status {
@@ -125,32 +129,63 @@ color: #bbb;
 	overflow: hidden;
 	margin-top: 1em;
 }
-.places-profiles-title, .places-allow-title, .places-deny-title, .places-prompt-title {
+.places-allow-title, .places-deny-title, .places-prompt-title {
 	float: left;
 	margin-left: 1%;
 }
 
-#places-profiles, #places-allow, #places-deny, #places-prompt {
-	min-height: 88%;
+#places-allow, #places-deny, #places-prompt {
+	height: 100%;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	float: left;
 	margin-left: 1%;
 }
-#places-profiles,
-.places-profiles-title {
-	width: 21%;
+#places-profiles, .places-profiles-title {
+	width: 100%;
+}
+.places-profiles-container, .places-content {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+}
+.places-profiles-container {
+	width: 20%;
+	margin-right: 2%;
+	margin-left: -1px;
+	border-right: 1px solid #ccc;
+}
+.places-content {
+	width: 78%;
+	margin-left: -0.25em;
+	position: relative;
+}
+#places-people {
+	position: absolute;
+	top: 0;
+}
+.places-content-titles {
+	position: absolute;
+	top: 45px;
+	width: 100%;
 }
 #places-allow, #places-deny, #places-prompt,
 .places-allow-title, .places-deny-title, .places-prompt-title {
-	width: 25%;
+	width: 32%;
+}
+.places-content-columns {
+	height: 100%;
+	padding-top: 85px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 .places-profiles-title {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	padding: 0.5em 0.3em 0.2em;
+	padding: 0.5em 0.3em;
 	color: #0084ff;
 	font-size: 130%;
 	position: relative;
@@ -190,7 +225,10 @@ color: #bbb;
 }
 #places-profiles img, #places-allow img, #places-deny img, #places-prompt img {
 	width: 10px;
-	margin: 8px;
+	padding: 8px;
+}
+#places-profiles img:hover, #places-allow img:hover, #places-deny img:hover, #places-prompt img:hover {
+	background: #eee;
 }
 .places-allow-title, .places-deny-title, .places-prompt-title {
 	padding: 0.3em 0.5em 0.3em;
@@ -198,6 +236,7 @@ color: #bbb;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	position: relative;
+	height: 40px;
 }
 .places-allow-title {
 	/*color: #0f0;*/
@@ -253,7 +292,7 @@ color: #bbb;
 	position: relative;
 }
 #places-profiles .selected {
-	background: #0084ff;
+	background: #555;
 	color: #fff;
 	cursor: default;
 }
@@ -410,7 +449,11 @@ color: #bbb;
 
 
 @media screen and (min-width: 1020px) {
-/* QUICK SETTINGS */
+	#tabTo-appsPolicies, #tabTo-placesPolicies {
+		display: block;
+	}
+
+	/* QUICK SETTINGS */
 
 	#quickSettings-switches, #quickSettings-status,
 	.quickSettings-switches-title, .quickSettings-status-title {

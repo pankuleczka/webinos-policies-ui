@@ -415,10 +415,6 @@ body.menu-unfolded #show-menu .notification-icon {
 	cursor: default;
 	color: #FFF;
 }
-#linkTo-appsPolicies, #linkTo-placesPolicies {
-	display: none;
-}
-
 
 /* TOOLBAR */
 
@@ -650,6 +646,9 @@ body.menu-unfolded #show-menu .notification-icon {
 	.webinoslogo-header, .header-left-button, .header-right-button {
 		display: none;
 	}
+	#linkTo-notificationsPage .notification-icon {
+		margin-top: -8px;
+	}
 
 	.content-container {
 		display: inline-block;
@@ -738,7 +737,7 @@ body.menu-unfolded #show-menu .notification-icon {
 		overflow: auto;
 	}
 	.menu > div {
-		color: #fff;
+		color: #555;
 		display: block;
 		font-size: 130%;
 		width: auto;
@@ -746,10 +745,7 @@ body.menu-unfolded #show-menu .notification-icon {
 	.menu > div.selected {
 		background: #111; /*#0084ff;*/
 		cursor: default;
-		color: #FFFA00; /*#fff;*/
-	}
-	#linkTo-appsPolicies, #linkTo-placesPolicies {
-		display: block;
+		color: #fff; /*#fff;*/
 	}
 
 

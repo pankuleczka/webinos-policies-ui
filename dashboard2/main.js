@@ -89,11 +89,11 @@ function getObjFromArrayById(id, array, returnWithPosition) {
 		j = array.length;
 	for(i; i<j; i++) {
 		if(array[i].id == id) {
-			var results;
+			var result;
 			if(returnWithPosition) {
 				result = {obj:array[i], pos:i};
 			} else {
-				results = array[i];
+				result = array[i];
 			}
 			return result;
 		}
@@ -175,7 +175,6 @@ function enableMenuAndInitFirstPage(id, type) {
 	for(i;i<j;i++) {
 		clickables[i].onclick = (function(elements, clickedEl, type) {
 			return function() {
-				console.log(this);
 				if(window.skipNextClick == this) { //TODO
 					window.skipNextClick = null;
 					return;
@@ -424,6 +423,11 @@ function SwipeableTabs(elId, containerId) {
 			//check old limit here and adjust pos?
 			this.scroll_limit = this.container_width - this.tab_width;
 			this.reinitNeeded = false;
+			if(this.scroll_limit != 0) {
+				this.tabs.style.cursor = 'move';
+			} else {
+				this.tabs.style.cursor = 'default';
+			}
 		}
 	};
 
