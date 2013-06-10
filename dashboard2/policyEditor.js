@@ -833,7 +833,11 @@ function addEditPermission() {
 		permission.perm = perm;
 		permission.personId = personId;
 
-		appData.permissions.push(permission);
+		if(tab == 'appsPolicies') {
+			appData.appPermissions.push(permission);
+		} else if(tab == 'placesPolicies') {
+			appData.permissions.push(permission);
+		}
 
 		//draw
 		var docFrag = document.createDocumentFragment();
