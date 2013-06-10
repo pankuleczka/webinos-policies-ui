@@ -71,7 +71,25 @@
 			</div>
 
 			<div id="appsPolicies" class="tab-content">
-				apps
+				<div class="apps-list-container">
+					<h1 class="apps-list-title">Apps</h1>
+					<div id="apps-list"></div>
+				</div>
+
+				<div class="apps-content">
+					<select id="apps-people"></select>
+
+					<div class="apps-content-titles">
+						<h1 class="apps-allow-title">Allow<span id="appsAddAllow">+</span></h1>
+						<h1 class="apps-prompt-title">Prompt<span id="appsAddPrompt">+</span></h1>
+						<h1 class="apps-deny-title">Deny<span id="appsAddDeny">+</span></h1>
+					</div>
+					<div class="apps-content-columns">
+						<div id="apps-allow" class="column"></div>
+						<div id="apps-prompt" class="column"></div>
+						<div id="apps-deny" class="column"></div>
+					</div>
+				</div>
 			</div>
 
 			<div id="peoplePolicies" class="tab-content">
@@ -195,11 +213,11 @@
 
 				<div id="popup-addPermission-summary-content" class="popup-page">
 					<input type="hidden" id="popup-addPermission-id">
-					<div class="popup-input-row">
+					<div class="popup-input-row" id="popup-addPermission-name-container">
 						<label for="popup-addPermission-name">Name</label>
 						<input type="text" id="popup-addPermission-name">
 					</div>
-					<div class="popup-input-row">
+					<div class="popup-input-row" id="popup-addPermission-app-container">
 						<label for="popup-addPermission-app">Application</label>
 						<select id="popup-addPermission-app">
 							<!--<option value="kif">Kids in Focus</option>
@@ -209,8 +227,8 @@
 					<div class="popup-input-row">
 						<label for="popup-addPermission-type">Device Service</label>
 						<select id="popup-addPermission-type">
-							<option value="gps">GPS</option>
-							<option value="sms">SMS</option>
+							<!--<option value="1">GPS</option>
+							<option value="5">SMS</option>-->
 						</select>
 					</div>
 					<div class="popup-input-row">

@@ -324,24 +324,30 @@ var enablePopups = function() {
 	domObjs.popupAddProfileName = document.getElementById('popup-addProfile-name');
 	document.getElementById('placesAddProfile').onclick = function() {profileEditPopup()};
 
+	document.getElementById('placesAddAllow').onclick = function() {permissionEditPopup('allow')};
+	document.getElementById('placesAddPrompt').onclick = function() {permissionEditPopup('prompt')};
+	document.getElementById('placesAddDeny').onclick = function() {permissionEditPopup('deny')};
+	document.getElementById('appsAddAllow').onclick = function() {permissionEditPopup('allow')};
+	document.getElementById('appsAddPrompt').onclick = function() {permissionEditPopup('prompt')};
+	document.getElementById('appsAddDeny').onclick = function() {permissionEditPopup('deny')};
+	document.getElementById('popup-deletePermission-confirm').onclick = function() {deletePermission()};
+	document.getElementById('popup-deleteProfile-confirm').onclick = function() {placesDeleteProfile()};
+
+	//buttons/elements inside popups
+	document.getElementById('popup-addProfile-save').onclick = function() {placesAddEditProfile()};
+	document.getElementById('popup-addPermission-save').onclick = function() {addEditPermission()};
+
+		//document.getElementById('popup-addToPolicy-profile').onclick = function() {policyEntityNewdit('profile')};
+		//document.getElementById('popup-addToPolicy-object').onclick = function() {policyEntityNewdit('object')};
+		//document.getElementById('popup-addToPolicy-service').onclick = function() {policyEntityNewdit('service')};
+
 	domObjs.popupAddPermissionId = document.getElementById('popup-addPermission-id');
 	domObjs.popupAddPermissionName = document.getElementById('popup-addPermission-name');
 	domObjs.popupAddPermissionApp = document.getElementById('popup-addPermission-app');
 	domObjs.popupAddPermissionType = document.getElementById('popup-addPermission-type');
 	domObjs.popupAddPermissionAction = document.getElementById('popup-addPermission-action');
-	document.getElementById('placesAddAllow').onclick = function() {permissionEditPopup('allow')};
-	document.getElementById('placesAddPrompt').onclick = function() {permissionEditPopup('prompt')};
-	document.getElementById('placesAddDeny').onclick = function() {permissionEditPopup('deny')};
-	document.getElementById('popup-deletePermission-confirm').onclick = function() {placesDeletePermission()};
-	document.getElementById('popup-deleteProfile-confirm').onclick = function() {placesDeleteProfile()};
-
-	//buttons inside popups
-	document.getElementById('popup-addProfile-save').onclick = function() {placesAddEditProfile()};
-	document.getElementById('popup-addPermission-save').onclick = function() {placesAddEditPermission()};
-
-		//document.getElementById('popup-addToPolicy-profile').onclick = function() {policyEntityNewdit('profile')};
-		//document.getElementById('popup-addToPolicy-object').onclick = function() {policyEntityNewdit('object')};
-		//document.getElementById('popup-addToPolicy-service').onclick = function() {policyEntityNewdit('service')};
+	domObjs.popupAddPermissionNameContainer = document.getElementById('popup-addPermission-name-container');
+	domObjs.popupAddPermissionAppContainer = document.getElementById('popup-addPermission-app-container');
 
 	/* policy entity edit tabs - quite verbose... but it seems like I don't need a function for anything similar to this */
 	var popupAddPermissionSummaryTab = document.getElementById('popup-addPermission-summary-tab');

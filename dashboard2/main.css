@@ -663,6 +663,7 @@ body.menu-unfolded #show-menu .notification-icon {
 	.content, .tab-content {
 		height: 100%;
 		overflow: auto;
+		overflow-x: hidden;
 		background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
 		background-attachment: scroll;
 		background-size: 500px;
