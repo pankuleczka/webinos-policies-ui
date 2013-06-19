@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Remote</title>
+   	<meta charset="utf-8">
+	<link rel="stylesheet" href="main.css">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body>
+	<div class="header">
+		<img src="img/webinosWithBorder.png">
+		<div class="title">TELECOMANDO</div>
+		<div id="nightmode">
+			<div id="night"class="button"><!--☾--></div>
+			<div id="day"class="button"><!--☼--></div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="main-controls">
+			<div class="button arr-up"><!--↑--></div>
+			<div class="button arr-left"><!--←--></div>
+			<div class="button arr-right"><!--→--></div>
+			<div class="button arr-down"><!--↓--></div>
+			<div id="play-pause" class="button">
+				<div id="play"><!--▶--></div>
+				<div id="pause"><!--||--></div>
+			</div>
+		</div>
+		<div class="prev-next">
+			<div class="button prev"><!--◁|--></div>
+			<div class="button next"><!--|▷--></div>
+		</div>
+		<div id="volume">
+			<div id="slider-left"></div>
+			<div id="slider-right"></div>
+			<div id="slider-handle"></div>
+		</div>
+	</div>
+	<script type='application/javascript' src='libs/fastclick.js'></script>
+	<script type="application/javascript" src="libs/hammer.min.js"></script>
+	<script type="application/javascript" src="main.js"></script>
+</body>
+</html>
