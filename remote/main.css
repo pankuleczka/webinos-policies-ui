@@ -110,8 +110,6 @@ body {
 	padding: 120px 10px 20px;
 	/*text-transform: uppercase;*/
 	font-size: 90%;
-	-webkit-box-shadow: inset 0 0 40px #999;
-	box-shadow: inset 0 0 40px #999;
 	background: #fff url(img/webinosBgLightGray.png) 50% 50% no-repeat;
 	background-size: 200px;
 	background-attachment: fixed;
@@ -127,11 +125,8 @@ body {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	text-align: center;
-	border: 1px solid #999;
-	box-shadow: 0 0 40px #999;
-	-webkit-box-shadow: 0 0 40px #999;
 	border-radius: 2em;
-	background-color: rgba(255,255,255,0.4);
+	background-color: #0079C2;
 }
 
 #day, #pause {
@@ -156,7 +151,8 @@ body {
 	height: 100%;
 	width: 3em;
 	border-radius: 0 0 0 1.5em;
-	border: none;
+	border-top: none;
+	border-right: none;
 }
 #night {
 	background-position: -579px 50%;
@@ -165,7 +161,11 @@ body {
 	background-position: -511px 50%;
 }
 
-.arr-up, .arr-down, .arr-left, .arr-right, #play, #pause, .prev, .next, #slider-handle, #day, #night {
+.arr-up, .arr-down, .arr-left, .arr-right, #play, #pause, .prev, .next, #slider-handle {
+	background-image: url('img/controls2.png');
+	background-repeat: no-repeat;
+}
+#day, #night {
 	background-image: url('img/controls.png');
 	background-repeat: no-repeat;
 }
@@ -279,31 +279,26 @@ body {
 	left: 50%;
 	width: 2em;
 	height: 2em;
-	border: 1px solid #666;
 	border-radius: 1em;
 	margin-left: -1em;
 	top: 0;
 	margin-top: -0.8em;
-	box-shadow: 0 0 20px #666;
-	-webkit-box-shadow: 0 0 20px #666;
-	background-color: #08f;
+	background-color: #0079C2;
 	background-position: -520px 50%;
 	background-size: auto 20px;
 }
 
 /* night mode */
-.header, .content, .button {
-	-webkit-transition: all 0.4s ease-in 0s;
-	-moz-transition: all 0.4s ease-in 0s;
-	-o-transition: all 0.4s ease-in 0s;
-	transition: all 0.4s ease-in 0s;
+.header, .content, .button, #play, #pause, #day, #night, #slider-handle {
+	-webkit-transition: background 0.4s, color 0.4s; /* "background" seemingly does not work with android 4.1.2, but the performance was crap anyway... */
+	-moz-transition: background 0.4s, color 0.4s;
+	-o-transition: background 0.4s, color 0.4s;
+	transition: background 0.4s, color 0.4s;
 }
 body.nightmode #day {display: block;}
 body.nightmode #night {display: none;}
 
 body.nightmode .content {
-	-webkit-box-shadow: inset 0 0 40px #666;
-	box-shadow: inset 0 0 40px #666;
 	background: #000 url(img/webinosBgDarkGray.png) 50% 50% no-repeat;
 	background-size: 200px;
 	color: #fff;
@@ -312,11 +307,13 @@ body.nightmode .header {
 	color: #fff;
 }
 body.nightmode .button {
-	background-color: rgba(255,255,255,0.6);
 }
 
 body.nightmode .arr-up, body.nightmode .arr-down, body.nightmode .arr-left, body.nightmode .arr-right,
 body.nightmode #play, body.nightmode #pause, body.nightmode .prev, body.nightmode .next,
-body.nightmode #slider-handle, body.nightmode #day, body.nightmode #night {
+body.nightmode #slider-handle {
+	background-image: url('img/controls.png');
+}
+body.nightmode #day, body.nightmode #night {
 	background-image: url('img/controls2.png');
 }
